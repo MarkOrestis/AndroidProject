@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Button register = (Button) findViewById(R.id.button);
+        final Button register = (Button) findViewById(R.id.button2);
         register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
