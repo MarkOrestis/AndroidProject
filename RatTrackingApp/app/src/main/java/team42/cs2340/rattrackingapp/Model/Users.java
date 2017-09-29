@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class Users {
     private String email;
     private String password;
+    private String userType;
 
-    public Users(String password, String email) {
-        this.password=password;
-        this.email=email;
+    public Users(String password, String email, String userType) {
+        this.password = password;
+        this.email = email;
+        this.userType = userType;
     }
 }
 
