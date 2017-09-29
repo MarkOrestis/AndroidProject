@@ -15,6 +15,7 @@ import team42.cs2340.rattrackingapp.R;
  */
 
 public class UserActivity extends Activity {
+    private RadioButton radioUserButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +36,11 @@ public class UserActivity extends Activity {
         switch(view.getId()) {
             case R.id.rbUser:
                 if (checked)
+                    radioUserButton = findViewById(R.id.rbUser);
                     break;
             case R.id.rbAdmin:
                 if (checked)
-                    // Ninjas rule
+                    radioUserButton = findViewById(R.id.rbAdmin);
                     break;
         }
     }
@@ -49,7 +51,7 @@ public class UserActivity extends Activity {
         EditText password = (EditText)findViewById(R.id.passwordUser);
 
         RadioGroup typeRadio = findViewById(R.id.rbAdmin);
-        String userType = typeRadio.toString();
+        String userType = radioUserButton.toString();
         String usernameString = username.getText().toString();
         String emailString = email.getText().toString();
         String passwordString = password.getText().toString();
