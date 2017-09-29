@@ -23,6 +23,7 @@
         android:layout_marginRight="29dp"
         android:layout_toLeftOf="@+id/textView3"
         android:layout_toStartOf="@+id/textView3"
+        android:onClick="onConfirmClick"
         android:text="Confirm" />
 
     <Button

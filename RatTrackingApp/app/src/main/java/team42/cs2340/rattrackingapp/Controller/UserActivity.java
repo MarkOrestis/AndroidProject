@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.RadioGroup;
 
+import team42.cs2340.rattrackingapp.Model.Users;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -23,5 +26,35 @@ public class UserActivity extends Activity {
             Intent i = new Intent(UserActivity.this, MainActivity.class);
             startActivity(i);
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    public void onConfirmClick(View v) {
+        EditText username = (EditText)findViewById(R.id.usernameUser);
+        EditText email = (EditText)findViewById(R.id.emailUser);
+        EditText password = (EditText)findViewById(R.id.passwordUser);
+
+        RadioGroup typeRadio = findViewById(R.id.rbAdmin);
+        String userType = typeRadio.toString();
+        String usernameString = username.getText().toString();
+        String emailString = email.getText().toString();
+        String passwordString = password.getText().toString();
+        Users  = new Users(passwordString, emailString, userType);
     }
 }
