@@ -42,6 +42,7 @@ public class UserActivity extends Activity {
                     break;
         }
     }
+
     public void onConfirmClick(View v) {
         EditText username = (EditText)findViewById(R.id.usernameUser);
         EditText email = (EditText)findViewById(R.id.emailUser);
