@@ -33,7 +33,6 @@ public class UserActivity extends Activity {
         switch(view.getId()) {
             case R.id.rbUser:
                 if (checked)
-                    // Pirates are the best
                     break;
             case R.id.rbAdmin:
                 if (checked)
