@@ -22,17 +22,19 @@
         tools:layout_constraintLeft_creator="1" />
 
     o
+
     <Button
         android:id="@+id/bRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="53dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="157dp"
-        android:layout_marginRight="56dp" />
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="56dp"
+        android:onClick="onRegisterClick"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

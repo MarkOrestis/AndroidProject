@@ -21,4 +21,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(i);
         }
     }
+
+    public void onRegisterClick(View v) {
+        if (v.getId() == R.id.bRegister) {
+            Intent i = new Intent(MainActivity.this, UserActivity.class);
+            startActivity(i);
+        }
+    }
 }
