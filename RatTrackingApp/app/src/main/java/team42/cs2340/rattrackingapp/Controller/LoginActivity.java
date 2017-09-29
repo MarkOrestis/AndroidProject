@@ -1,4 +1,4 @@
-package team42.cs2340.rattrackingapp;
+package team42.cs2340.rattrackingapp.Controller;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import team42.cs2340.rattrackingapp.R;
 
 /**
  * Created by CS2340 Team 42 -- Answer to Life

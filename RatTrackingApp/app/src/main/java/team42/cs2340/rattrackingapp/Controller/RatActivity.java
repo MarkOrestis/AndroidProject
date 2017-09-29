@@ -1,9 +1,11 @@
-package team42.cs2340.rattrackingapp;
+package team42.cs2340.rattrackingapp.Controller;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import team42.cs2340.rattrackingapp.R;
 
 
 /**

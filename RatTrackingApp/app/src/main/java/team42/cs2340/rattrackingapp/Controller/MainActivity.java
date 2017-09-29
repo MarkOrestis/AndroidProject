@@ -1,10 +1,11 @@
-package team42.cs2340.rattrackingapp;
+package team42.cs2340.rattrackingapp.Controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import team42.cs2340.rattrackingapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
