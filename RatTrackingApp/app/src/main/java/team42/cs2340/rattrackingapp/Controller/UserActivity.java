@@ -59,7 +59,7 @@ public class UserActivity extends Activity {
         String usernameString = username.getText().toString();
         String emailString = email.getText().toString();
         String passwordString = password.getText().toString();
-        Users newUser = new Users(passwordString, emailString, userType);
+        Users newUser = new Users(usernameString, passwordString, emailString, userType);
         userBase.add(newUser);
     }
 }
