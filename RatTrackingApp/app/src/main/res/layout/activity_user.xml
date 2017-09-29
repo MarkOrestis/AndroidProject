@@ -26,7 +26,7 @@
         android:text="Confirm" />
 
     <Button
-        android:id="@+id/bCancel2"
+        android:id="@+id/bCancelUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/bConfirm"
@@ -34,6 +34,7 @@
         android:layout_marginStart="29dp"
         android:layout_toEndOf="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
+        android:onClick="onCancelUserClick"
         android:text="Cancel" />
 
     <EditText
@@ -88,7 +89,7 @@
         android:layout_alignStart="@+id/textView4"
         android:layout_alignTop="@+id/editText2"
         android:layout_marginTop="11dp"
-        android:text="Id:"
+        android:text="Email:"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
@@ -117,12 +118,10 @@
         android:id="@+id/rbUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="User"
         android:layout_alignTop="@+id/textView8"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_toLeftOf="@+id/bCancel2"
-        android:layout_toStartOf="@+id/bCancel2"
-        android:text="User" />
+        android:layout_toLeftOf="@+id/textView3"
+        android:layout_toStartOf="@+id/textView3" />
 
     <RadioButton
         android:id="@+id/rbAdmin"
