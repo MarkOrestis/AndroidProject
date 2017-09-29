@@ -114,24 +114,44 @@
         android:text="User Type:"
         android:textAppearance="@style/TextAppearance.AppCompat" />
 
-    <RadioButton
-        android:id="@+id/rbUser"
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:id="@+id/radioGroup"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_alignTop="@+id/textView8"
-        android:layout_toLeftOf="@+id/textView3"
-        android:layout_toStartOf="@+id/textView3" />
+        android:layout_alignLeft="@+id/passwordUser"
+        android:layout_alignStart="@+id/passwordUser">
 
-    <RadioButton
-        android:id="@+id/rbAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/rbUser"
-        android:layout_alignStart="@+id/rbUser"
-        android:layout_below="@+id/rbUser"
-        android:layout_marginTop="11dp"
-        android:text="Admin" />
+        <RadioButton
+            android:id="@+id/rbUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView8"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_alignLeft="@+id/passwordUser"
+            android:layout_alignStart="@+id/passwordUser"
+            android:layout_weight="1.31"
+            android:onClick="onRadioButtonClicked"
+            android:text="User" />
+
+        <RadioButton
+            android:id="@+id/rbAdmin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rbUser"
+            android:layout_alignBottom="@+id/rbUser"
+            android:layout_toEndOf="@+id/rbUser"
+            android:layout_toRightOf="@+id/rbUser"
+            android:onClick="onRadioButtonClicked"
+            android:text="Admin" />
+
+
+    </RadioGroup>
+
 
 </RelativeLayout>
 
