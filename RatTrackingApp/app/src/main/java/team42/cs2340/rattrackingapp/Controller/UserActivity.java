@@ -53,13 +53,15 @@ public class UserActivity extends Activity {
         EditText username = (EditText)findViewById(R.id.usernameUser);
         EditText email = (EditText)findViewById(R.id.emailUser);
         EditText password = (EditText)findViewById(R.id.passwordUser);
-
         RadioGroup typeRadio = findViewById(R.id.rbAdmin);
         String userType = radioUserButton.toString();
         String usernameString = username.getText().toString();
         String emailString = email.getText().toString();
         String passwordString = password.getText().toString();
-        Users newUser = new Users(usernameString, passwordString, emailString, userType);
-        userBase.add(newUser);
+        userBase.add(new Users(usernameString, passwordString, emailString, userType));
+    }
+
+    public ArrayList<Users> getUserBase() {
+        return userBase;
     }
 }
