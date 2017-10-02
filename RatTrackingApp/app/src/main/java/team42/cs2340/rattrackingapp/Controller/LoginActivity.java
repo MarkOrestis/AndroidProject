@@ -1,68 +1,112 @@
 package team42.cs2340.rattrackingapp.Controller;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-
-import team42.cs2340.rattrackingapp.Model.UserBase;
-import team42.cs2340.rattrackingapp.Model.Users;
+import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by CS2340 Team 42 -- Answer to Life
+ * Created by Orestis Markozanes on 10/2/2017.
  */
 
 public class LoginActivity extends Activity {
 
+    /**
+     * Id to identity READ_CONTACTS permission request.
+     */
+    /**
+     * Keep track of the login task to ensure we can cancel it if requested.
+     */
 
+    // UI references.
+    private AutoCompleteTextView mEmailView;
+    private EditText mPasswordView;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-    }
+        setContentView(R.layout.activity_login);
+        // Set up the login form.
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.username);
 
-    public void onCancelClick(View v) {
-        if (v.getId() == R.id.bCancel) {
-            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(i);
-        }
-    }
-
-    public void onLoginClick2(View v) {
-        if (v.getId() == R.id.bLogin2) {
-            EditText username = (EditText) findViewById(R.id.usernameText);
-            EditText password = (EditText) findViewById(R.id.passwordText);
-            String usernameString = username.getText().toString();
-            String passwordString = password.getText().toString();
-            ArrayList<Users> dummy = new UserBase().getUsers();
-
-            for (int i = 0; i < dummy.size(); i++) {
-                if (usernameString.equals(dummy.get(i).getUsername())
-                        && passwordString.equals(dummy.get(i).getPassword())) {
-                    Intent j = new Intent(LoginActivity.this, RatActivity.class);
-                    startActivity(j);
+        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
                 }
+                return false;
             }
-            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+        });
 
-            dlgAlert.setMessage("Wrong password or username, please try again.");
-            dlgAlert.setTitle("Error Message ...");
-            dlgAlert.setPositiveButton("OK", null);
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
+        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptLogin();
+            }
+        });
 
-            dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+        Button cancelButton = (Button) findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                returnToWelcomeScreen();
+            }
+        });
+    }
 
-                }
-            });
+    public void returnToWelcomeScreen() {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
 
+    /**
+     * Attempts to sign in or register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual login attempt is made.
+     */
+    private void attemptLogin() {
+
+        // Reset errors.
+        mEmailView.setError(null);
+        mPasswordView.setError(null);
+
+        Model model = Model.getInstance();
+
+        // Store values at the time of the login attempt.
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
+        boolean found = false;
+
+        int x = 0;
+        while (x < model.getUsers().size() && !found) {
+            if (model.getUsers().get(x).getUsername().equals(email)
+                    && model.getUsers().get(x).getPassword().equals(password)) {
+                Intent intent = new Intent(this, LaunchActivity.class);
+                intent.putExtra("Username", email);
+                startActivity(intent);
+                found = true;
+            }
+            x++;
+        }
+        if (!found) {
+            Toast.makeText(this, "Invalid Username and Password", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
+
