@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import team42.cs2340.rattrackingapp.Model.Admin;
 import team42.cs2340.rattrackingapp.Model.Model;
@@ -84,13 +85,31 @@ public class RegisterActivity extends Activity {
 
     public void register() {
         Model model = Model.getInstance();
-        if (admin) {
-            user = new Admin(emailField.getText().toString(), passwordField.getText().toString());
-        } else {
-            user = new User(emailField.getText().toString(), passwordField.getText().toString());
+        String email = emailField.getText().toString();
+
+        boolean found = false;
+
+        int x = 0;
+
+        while (x < model.getUsers().size()) {
+            if (model.getUsers().get(x).getUsername().equals(email)) {
+                found = true;
+            }
+            x++;
         }
-        model.addUser(user);
-        Intent intent = new Intent(this, WelcomeActivity.class);
-        startActivity(intent);
+        if (!found) {
+            if (admin) {
+                user = new Admin(emailField.getText().toString(), passwordField.getText().toString());
+            } else {
+                user = new User(emailField.getText().toString(), passwordField.getText().toString());
+            }
+            model.addUser(user);
+            Intent intent = new Intent(this, WelcomeActivity.class);
+            startActivity(intent);
+        }
+
+        if (found) {
+            Toast.makeText(this, "Username already exist, please use another one", Toast.LENGTH_SHORT).show();
+        }
     }
 }

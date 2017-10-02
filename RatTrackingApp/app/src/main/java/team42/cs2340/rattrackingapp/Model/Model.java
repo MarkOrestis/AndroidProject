@@ -22,8 +22,8 @@ public class Model {
     }
 
     /**
-     * Getter for User ArrayList
-     * @return the ArrayList of Users
+     * Getter for ArrayList of Users
+     * @return ArrayList of Users
      */
     public List<User> getUsers() { return users; }
 
