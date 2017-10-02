@@ -10,6 +10,7 @@ import android.widget.RadioButton;
 
 import java.util.ArrayList;
 
+import team42.cs2340.rattrackingapp.Model.UserBase;
 import team42.cs2340.rattrackingapp.Model.Users;
 import team42.cs2340.rattrackingapp.R;
 
@@ -19,7 +20,7 @@ import team42.cs2340.rattrackingapp.R;
 
 public class UserActivity extends Activity {
     private RadioButton radioUserButton;
-    private ArrayList<Users> userBase;
+    private ArrayList<Users> userBase = new UserBase().getUsers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,6 @@ public class UserActivity extends Activity {
         String emailString = email.getText().toString();
         String passwordString = password.getText().toString();
         userBase.add(new Users(usernameString, passwordString, emailString, userType));
-    }
 
-    public ArrayList<Users> getUserBase() {
-        return userBase;
     }
 }
