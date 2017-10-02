@@ -20,7 +20,7 @@ import team42.cs2340.rattrackingapp.R;
 
 public class UserActivity extends Activity {
     private RadioButton radioUserButton;
-    private ArrayList<Users> userBase = new UserBase().getUsers();
+//    private UserBase userBase = (UserBase)getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class UserActivity extends Activity {
         }
     }
     public void onRadioButtonClicked(View view) {
+
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
@@ -55,11 +56,15 @@ public class UserActivity extends Activity {
         EditText email = (EditText)findViewById(R.id.emailUser);
         EditText password = (EditText)findViewById(R.id.passwordUser);
         RadioGroup typeRadio = findViewById(R.id.rbAdmin);
-        String userType = radioUserButton.toString();
+//      String userType = radioUserButton.toString();
         String usernameString = username.getText().toString();
         String emailString = email.getText().toString();
         String passwordString = password.getText().toString();
-        userBase.add(new Users(usernameString, passwordString, emailString, userType));
+//        userBase.getUsers().add(new Users(usernameString, passwordString, emailString, null));
 
+        if (v.getId() == R.id.bConfirm) {
+            Intent i = new Intent(UserActivity.this, LoginActivity.class);
+            startActivity(i);
+        }
     }
 }

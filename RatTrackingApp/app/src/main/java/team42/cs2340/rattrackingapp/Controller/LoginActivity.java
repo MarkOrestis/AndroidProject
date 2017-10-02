@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
+import team42.cs2340.rattrackingapp.Model.UserBase;
+import team42.cs2340.rattrackingapp.Model.Users;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -15,6 +19,8 @@ import team42.cs2340.rattrackingapp.R;
  */
 
 public class LoginActivity extends Activity {
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -29,31 +35,34 @@ public class LoginActivity extends Activity {
 
     public void onLoginClick2(View v) {
         if (v.getId() == R.id.bLogin2) {
-            EditText username = (EditText)findViewById(R.id.usernameText);
-            EditText password = (EditText)findViewById(R.id.passwordText);
+            EditText username = (EditText) findViewById(R.id.usernameText);
+            EditText password = (EditText) findViewById(R.id.passwordText);
             String usernameString = username.getText().toString();
             String passwordString = password.getText().toString();
-            if (usernameString.equals("user") && passwordString.equals("pass")) {
+            ArrayList<Users> dummy = new UserBase().getUsers();
 
-
-            Intent j = new Intent(LoginActivity.this, RatActivity.class);
-            startActivity(j);
-            } else {
-                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
-
-                dlgAlert.setMessage("Wrong password or username, please try again.");
-                dlgAlert.setTitle("Error Message ...");
-                dlgAlert.setPositiveButton("OK", null);
-                dlgAlert.setCancelable(true);
-                dlgAlert.create().show();
-
-                dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
+            for (int i = 0; i < dummy.size(); i++) {
+                if (usernameString.equals(dummy.get(i).getUsername())
+                        && passwordString.equals(dummy.get(i).getPassword())) {
+                    Intent j = new Intent(LoginActivity.this, RatActivity.class);
+                    startActivity(j);
+                }
             }
+            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+
+            dlgAlert.setMessage("Wrong password or username, please try again.");
+            dlgAlert.setTitle("Error Message ...");
+            dlgAlert.setPositiveButton("OK", null);
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+            dlgAlert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
         }
     }
 }
