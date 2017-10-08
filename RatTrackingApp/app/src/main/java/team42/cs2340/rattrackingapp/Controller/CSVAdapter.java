@@ -45,13 +45,13 @@ public class CSVAdapter extends ArrayAdapter<RatSightingData> {
                 RatSightingData cur = new RatSightingData();
                 cur.setUniqueKey(rowData[0]);
                 cur.setCreatedDate(rowData[1]);
-//                cur.setLocationType(rowData[7]);
-//                cur.setIncidentZip(rowData[8]);
-//                cur.setIncidentAddress(rowData[9]);
-//                cur.setCity(rowData[16]);
-//                cur.setBorough(rowData[23]);
-//                cur.setLatitude(rowData[49]);
-//                cur.setLongitude(rowData[50]);
+                cur.setLocationType(rowData[7]);
+                cur.setIncidentZip(rowData[8]);
+                cur.setIncidentAddress(rowData[9]);
+                cur.setCity(rowData[16]);
+                cur.setBorough(rowData[23]);
+                cur.setLatitude(rowData[49]);
+                cur.setLongitude(rowData[50]);
 
                 //Add the RatSightingData object to the ArrayList
                 this.add(cur);
