@@ -73,7 +73,7 @@ public class CSVAdapter extends ArrayAdapter<RatSightingData> {
 
         //Set the unique key as the text
         mView.setText(getItem(pos).getUniqueKey());
-        
+
         return mView;
     }
 }

@@ -2,6 +2,7 @@ package team42.cs2340.rattrackingapp.Controller;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -30,8 +31,20 @@ public class DataActivity extends Activity{
         mList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int pos,long id) {
-                Toast.makeText(v.getContext(), mAdapter.getItem(pos).getCreatedDate(), Toast.LENGTH_LONG).show();
-                Toast.makeText(v.getContext(), mAdapter.getItem(pos).getUniqueKey(), Toast.LENGTH_LONG).show();
+                String string = "Created Date: " + mAdapter.getItem(pos).getCreatedDate() + "\n"
+                        +"Location Type: " + mAdapter.getItem(pos).getLocationType() + "\n"
+                        +"Incident Zip: " + mAdapter.getItem(pos).getIncidentZip() + "\n"
+                        +"Incident Address: " + mAdapter.getItem(pos).getIncidentAddress() + "\n"
+                        +"City: " + mAdapter.getItem(pos).getCity() + "\n"
+                        +"Borough: " + mAdapter.getItem(pos).getBorough() + "\n"
+                        +"Latitude: " + mAdapter.getItem(pos).getLatitude() + "\n"
+                        +"Longitude: " + mAdapter.getItem(pos).getLongitude();
+
+
+                Toast.makeText(v.getContext(), string, Toast.LENGTH_LONG).show();
+
+
+
             }
         });
     }
