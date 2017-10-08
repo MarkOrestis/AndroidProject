@@ -14,4 +14,76 @@ public class RatSightingData {
     private String borough;
     private String latitude;
     private String longitude;
+
+    public String getUniqueKey() {
+        return uniqueKey;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public String getLocationType() {
+        return locationType;
+    }
+
+    public String getIncidentZip() {
+        return incidentZip;
+    }
+
+    public String getIncidentAddress() {
+        return incidentAddress;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getBorough() {
+        return borough;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setUniqueKey(String uniqueKey) {
+        this.uniqueKey = uniqueKey;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
+    }
+
+    public void setIncidentZip(String incidentZip) {
+        this.incidentZip = incidentZip;
+    }
+
+    public void setIncidentAddress(String incidentAddress) {
+        this.incidentAddress = incidentAddress;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setBorough(String borough) {
+        this.borough = borough;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }
