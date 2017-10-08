@@ -1,9 +1,10 @@
 package team42.cs2340.rattrackingapp.Controller;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +23,7 @@ public class CSVAdapter extends ArrayAdapter<RatSightingData> {
         super(context, textViewResourceID);
 
         //Store a reference to the context so we can use it to load a file from Model
-        this.csv = csv;
+        this.csv = context;
 
         //Load the data
         loadArrayFromFile();
@@ -44,23 +45,36 @@ public class CSVAdapter extends ArrayAdapter<RatSightingData> {
                 RatSightingData cur = new RatSightingData();
                 cur.setUniqueKey(rowData[0]);
                 cur.setCreatedDate(rowData[1]);
-                cur.setLocationType(rowData[7]);
-                cur.setIncidentZip(rowData[])
+//                cur.setLocationType(rowData[7]);
+//                cur.setIncidentZip(rowData[8]);
+//                cur.setIncidentAddress(rowData[9]);
+//                cur.setCity(rowData[16]);
+//                cur.setBorough(rowData[23]);
+//                cur.setLatitude(rowData[49]);
+//                cur.setLongitude(rowData[50]);
 
-//                Unique Key
-//                Created Date
-//                Location Type
-//                Incident Zip
-//                Incident Address
-//                City
-//                        Borough
-//                Latitude
-//                        Longitude
-
+                //Add the RatSightingData object to the ArrayList
+                this.add(cur);
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public View getView(final int pos, View convertView, final ViewGroup parent) {
+
+        TextView mView = (TextView)convertView;
+        if (null == mView) {
+            mView = new TextView(parent.getContext());
+            mView.setTextSize(28);
+        }
+
+        //Set the unique key as the text
+        mView.setText(getItem(pos).getUniqueKey());
+
+
+        return mView;
     }
 }

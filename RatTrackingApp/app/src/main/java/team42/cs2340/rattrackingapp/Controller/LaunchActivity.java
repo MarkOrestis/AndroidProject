@@ -31,12 +31,25 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button dataButton = (Button) findViewById(R.id.dataButton);
+        dataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToData();
+            }
+        });
+
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
     }
 
     public void logOut() {
         Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToData() {
+        Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
     }
 }
