@@ -32,7 +32,7 @@ public class DataActivity extends Activity{
         mList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int pos,long id) {
-                String string = "\nCreated Date: " + mAdapter.getItem(pos).getCreatedDate() + "\n"
+                String string = "Created Date: " + mAdapter.getItem(pos).getCreatedDate() + "\n"
                         +"Location Type: " + mAdapter.getItem(pos).getLocationType() + "\n"
                         +"Incident Zip: " + mAdapter.getItem(pos).getIncidentZip() + "\n"
                         +"Incident Address: " + mAdapter.getItem(pos).getIncidentAddress() + "\n"
