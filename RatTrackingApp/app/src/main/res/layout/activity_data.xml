@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controller.DataActivity" >
+    tools:context=".Controller.DataActivity"
+    android:background="#292929">
 
     <ListView
         android:layout_width="wrap_content"
