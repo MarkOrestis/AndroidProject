@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#292929"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,13 +33,17 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true">
 
                 <AutoCompleteTextView
                     android:id="@+id/username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Username"
+                    android:textColorHint="#d3d3d3"
+                    android:backgroundTint="#d3d3d3"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -46,13 +51,18 @@
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_centerHorizontal="true">
 
-                <EditText
+
+            <EditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    android:textColorHint="#d3d3d3"
+                    android:backgroundTint="#d3d3d3"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="Sign in"
                     android:imeOptions="actionUnspecified"
@@ -64,24 +74,25 @@
 
             <Button
                 android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Sign In"
-                android:textStyle="bold" />
+                android:layout_width="100dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="150dp"
+                android:layout_alignParentRight="true"
+                android:background="#92cbc5"
+                android:text="Log in"/>
 
             <Button
                 android:id="@+id/cancel_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Cancel"
-                android:textStyle="bold" />
+                android:layout_width="100dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="150dp"
+                android:layout_toLeftOf="@id/email_sign_in_button"
+                android:layout_marginRight="15dp"
+                android:background="#d3d3d3"
+                android:text="Cancel"/>
 
 
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </LinearLayout>
 

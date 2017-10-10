@@ -19,14 +19,14 @@ public class WelcomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton = (Button) findViewById(R.id.loginbtn);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goToLoginScreen();
             }
         });
-        Button mRegisterButton = (Button) findViewById(R.id.registerButton);
+        Button mRegisterButton = (Button) findViewById(R.id.registerbtn);
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

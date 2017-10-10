@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#292929">
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Squirmin' Vermin"
+        android:textSize="32dp"
+        android:textColor="#d3d3d3"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log In" />
+        android:id="@+id/loginbtn"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:text="Log in"
+        android:background="#92cbc5"/>
 
     <Button
-        android:id="@+id/registerButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register" />
-</LinearLayout>
+        android:id="@+id/registerbtn"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/logoutButton"
+        android:layout_marginTop="460dp"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        android:background="#92cbc5"/>
+
+    <ImageView
+        android:id="@+id/ratIMG"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/rat"/>
+
+</RelativeLayout>

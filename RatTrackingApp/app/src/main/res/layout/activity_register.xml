@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:weightSum="1"
+    android:background="#292929">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
-        android:text="Enter Your User Name and Password"
-        android:textAlignment="center"
+        android:text="Create a username and password"
+        android:textColor="#d3d3d3"
+        android:layout_centerHorizontal="true"
         android:textSize="20dp" />
 
     <EditText
@@ -18,9 +25,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
         android:inputType="textPersonName"
-        android:hint="User Name"
+        android:hint="Username"
+        android:textColorHint="#d3d3d3"
+        android:backgroundTint="#d3d3d3"
         android:layout_weight="0.03" />
 
     <EditText
@@ -28,42 +38,59 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.03"
-        android:layout_marginTop="16dp"
         android:ems="10"
+        android:layout_marginTop="110dp"
+        android:layout_centerHorizontal="true"
         android:inputType="textPersonName"
-        android:hint="Password" />
+        android:hint="Password"
+        android:textColorHint="#d3d3d3"
+        android:backgroundTint="#d3d3d3"/>
 
     <RadioGroup
         android:id="@+id/radioUserType"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <RadioButton
             android:id="@+id/radioUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="160dp"
             android:text="User"
+            android:textColor="#d3d3d3"
             android:checked="true"
+            android:buttonTint="#92cbc5"
             android:onClick="onRadioButtonClicked" />
 
         <RadioButton
             android:id="@+id/radioAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Admin"
+            android:textColor="#d3d3d3"
+            android:buttonTint="#92cbc5"
             android:onClick="onRadioButtonClicked" />
 
     </RadioGroup>
 
     <Button
         android:id="@+id/registrationButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register" />
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:background="#92cbc5"
+        android:text="Register"/>
 
     <Button
         android:id="@+id/cancelRegistrationButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel" />
-</LinearLayout>
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="220dp"
+        android:layout_toLeftOf="@id/registrationButton"
+        android:layout_marginRight="15dp"
+        android:background="#d3d3d3"
+        android:text="Cancel"/>
+</RelativeLayout>
