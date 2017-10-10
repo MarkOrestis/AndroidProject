@@ -28,7 +28,6 @@
         android:id="@+id/registerbtn"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_below="@id/logoutButton"
         android:layout_marginTop="460dp"
         android:layout_centerHorizontal="true"
         android:text="Register"
