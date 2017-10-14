@@ -52,4 +52,5 @@ public class LaunchActivity extends Activity {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
     }
+
 }

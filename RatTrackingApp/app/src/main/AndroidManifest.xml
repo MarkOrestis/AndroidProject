@@ -55,6 +55,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.LoginActivity" />
         </activity>
+        <activity android:name=".Controller.AddratActivity"
+            android:parentActivityName=".Controller.DataActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controller.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

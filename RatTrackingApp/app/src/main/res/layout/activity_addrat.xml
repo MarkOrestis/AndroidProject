@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/city_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPersonName"
+        android:hint="City"
+        android:textColorHint="#d3d3d3"
+        android:backgroundTint="#d3d3d3"
+        android:layout_weight="0.03" />
+
+    <Button
+        android:id="@+id/addratbutton"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:background="#92cbc5"
+        android:text="Add Rat"/>
+
+    <Button
+        android:id="@+id/canceladdratbutton"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="250dp"
+        android:layout_toLeftOf="@id/addratbutton"
+        android:layout_marginRight="15dp"
+        android:background="#d3d3d3"
+        android:text="Cancel"/>
+
+</RelativeLayout>

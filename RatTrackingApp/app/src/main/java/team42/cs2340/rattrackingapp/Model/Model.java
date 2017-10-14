@@ -12,6 +12,7 @@ public class Model {
     public static Model getInstance() { return instance; }
 
     private List<User> users;
+    private List<Rat> rats;
 
     /**
      * No-arg constructor that creates an ArrayList of Users
@@ -19,6 +20,8 @@ public class Model {
     private Model() {
         users = new ArrayList<>();
         addUser(new User("a", "a"));
+        rats = new ArrayList<>();
+        addRat(new Rat("a"));
     }
 
     /**
@@ -26,6 +29,8 @@ public class Model {
      * @return ArrayList of Users
      */
     public List<User> getUsers() { return users; }
+
+    public List<Rat> getRats() {return rats; }
 
     /**
      * Method to add a User to the ArrayList
@@ -37,6 +42,19 @@ public class Model {
             if (c.getUsername().equals(tempUser.getUsername())) return false;
         }
         users.add(tempUser);
+        return true;
+    }
+
+    /**
+     * Method to add a User to the ArrayList
+     * @param newRat the User to be added to the ArrayList
+     * @return whether or not the Rat was successfully added
+     */
+    public boolean addRat(Rat newRat) {
+        for (Rat r : rats) {
+            if (r.getUniqueKey().equals(newRat.getUniqueKey())) return false;
+        }
+        rats.add(newRat);
         return true;
     }
 }

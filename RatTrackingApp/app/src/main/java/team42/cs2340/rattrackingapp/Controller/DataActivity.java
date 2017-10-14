@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Telephony;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import team42.cs2340.rattrackingapp.R;
+import java.io.File;
+
 
 /**
  * Created by King Jay on 10/8/2017.
@@ -18,6 +22,10 @@ import team42.cs2340.rattrackingapp.R;
 
 public class DataActivity extends Activity{
     CSVAdapter mAdapter;
+    CSVFileWriter csv;
+    StringBuffer filePath;
+    File file;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +36,14 @@ public class DataActivity extends Activity{
         mAdapter = new CSVAdapter(this, -1);
 
         mList.setAdapter(mAdapter);
+
+        Button addRatButton = (Button) findViewById(R.id.ratbutton);
+        addRatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddRat();
+            }
+        });
 
         mList.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -46,5 +62,11 @@ public class DataActivity extends Activity{
                 startActivity(intent);
             }
         });
+
+    }
+
+    public void goToAddRat() {
+        Intent intent = new Intent(this, AddratActivity.class);
+        startActivity(intent);
     }
 }
