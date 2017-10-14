@@ -1,24 +1,33 @@
-package team42.cs2340.rattrackingapp.Controller;
+package team42.cs2340.rattrackingapp.Model;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import team42.cs2340.rattrackingapp.Model.RatSightingData;
-
 /**
  * Created by King Jay on 10/8/2017.
  */
 
+/**
+ * An adapter that takes in data from a rat sighting csv.
+ * Overrides the default getView() method to return a TextView with the
+ * Rat Sighting data.
+ */
 public class CSVAdapter extends ArrayAdapter<RatSightingData> {
     Context csv;
 
+    /**
+     * An adapter constructor for CSV files.
+     * @param context holds file to load into model
+     * @param textViewResourceID holder
+     */
     public CSVAdapter(Context context, int textViewResourceID) {
         super(context, textViewResourceID);
 
@@ -62,6 +71,13 @@ public class CSVAdapter extends ArrayAdapter<RatSightingData> {
         }
     }
 
+    /**
+     * Returns a view out of some data that represents one row within the ListView.
+     * @param pos holds position in CSV file
+     * @param convertView the view itself
+     * @param parent the parent of the view
+     * @return View of data
+     */
     @Override
     public View getView(final int pos, View convertView, final ViewGroup parent) {
 

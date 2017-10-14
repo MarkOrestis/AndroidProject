@@ -13,6 +13,9 @@ import team42.cs2340.rattrackingapp.R;
  * Created by Orestis Markozanes on 10/9/2017.
  */
 
+/**
+ * The activity page that holds the detail regarding what that unique rat sighting key holds.
+ */
 public class DetailActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

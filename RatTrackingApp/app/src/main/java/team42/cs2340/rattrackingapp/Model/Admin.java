@@ -1,7 +1,7 @@
 package team42.cs2340.rattrackingapp.Model;
 
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * An admin class that sets a user apart from if they are a simple user or an admin.
  */
 
 public class Admin extends User {

@@ -16,9 +16,8 @@ import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * The activity page that launches when the user clicks login from the Welcome Activity page.
  */
-
 public class LoginActivity extends Activity {
 
     /**
@@ -68,6 +67,9 @@ public class LoginActivity extends Activity {
         });
     }
 
+    /**
+     * Returns the user to the welcome screen when they press cancel from wanting to login again
+     */
     public void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);

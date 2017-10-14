@@ -4,9 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * The User Model class that holds data in regards to the User itself
  */
-
 public class User implements Parcelable {
     private String username;
     private String password;

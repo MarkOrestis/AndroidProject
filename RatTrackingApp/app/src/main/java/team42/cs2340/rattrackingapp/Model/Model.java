@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * The model class which holds an array list of users.
  */
-
 public class Model {
     private static final Model instance = new Model();
     public static Model getInstance() { return instance; }

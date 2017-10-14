@@ -8,9 +8,8 @@ import android.widget.Button;
 
 import team42.cs2340.rattrackingapp.R;
 
-
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * The first activity page that is launched when the user first opens the application.
  */
 
 public class WelcomeActivity extends Activity {
@@ -35,11 +34,19 @@ public class WelcomeActivity extends Activity {
         });
     }
 
+    /**
+     * A click listener method that brings the user from the Welcome Activity page to the Login
+     * screen.
+     */
     public void goToLoginScreen() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * A click listener method that bring the user from the Welcome Activity page to the register
+     * screen.
+     */
     public void goToRegisterScreen() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);

@@ -18,9 +18,8 @@ import team42.cs2340.rattrackingapp.Model.User;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/2/2017.
+ * The activity page that the user goes to when they want to register into the system
  */
-
 public class RegisterActivity extends Activity {
     private EditText emailField;
     private EditText passwordField;
@@ -61,11 +60,19 @@ public class RegisterActivity extends Activity {
         });
     }
 
+    /**
+     * A click listener method that when clicked on, brings the user back to the welcome activity
+     * page
+     */
     public void returnToWelcomeScreen() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * This method decides whether the user will be an admin or a simple user of the app
+     * @param view The radio button views
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -83,6 +90,9 @@ public class RegisterActivity extends Activity {
         }
     }
 
+    /**
+     * A method to register the user and check if the username is already in use.
+     */
     public void register() {
         Model model = Model.getInstance();
         String email = emailField.getText().toString();

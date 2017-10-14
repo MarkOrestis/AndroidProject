@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import team42.cs2340.rattrackingapp.R;
 
-/**
- * Created by Orestis Markozanes on 10/2/2017.
- */
 
+/**
+ * The activity page that launches when a user succesfully logs in
+ */
 public class LaunchActivity extends Activity {
 
     @Override
@@ -43,11 +43,19 @@ public class LaunchActivity extends Activity {
         welcomeText.setText("Welcome " + user + "!");
     }
 
+    /**
+     * A method that listens to a click to logout the user and brings them back to the Welcome
+     * Activity page.
+     */
     public void logOut() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * A method that listens to a click to bring the user to a page with the unique keys of
+     * Rat Sighting data.
+     */
     public void goToData() {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);

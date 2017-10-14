@@ -10,15 +10,18 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import team42.cs2340.rattrackingapp.Model.CSVAdapter;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by King Jay on 10/8/2017.
+ * Activity page that is created with all the unique id's and when clicked on will bring the user
+ * to the detail activity page.
  */
-
 public class DataActivity extends Activity{
     CSVAdapter mAdapter;
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
