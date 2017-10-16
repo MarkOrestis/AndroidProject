@@ -67,14 +67,14 @@ public class AddratActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                csv.writeHeader(uniqueKeyField.getText().toString(),
-                        createdDateField.getText().toString(),,,,,
-                        locationTypeField.getText().toString(), zipField.getText().toString(),
-                        addressField.getText().toString(),,,,,,,
-                        cityField.getText().toString(),,,,,,,boroughField.getText().toString(),,,,,
-                        ,,,,,,,,,,,,,,,,,,,,,latitudeField.getText().toString(),
-                        longitudeField.getText().toString());
-
+                csv.writeHeader(uniqueKeyField.getText().toString() + "," +
+                        createdDateField.getText().toString() + ",,,,," +
+                        locationTypeField.getText().toString()+ "," + zipField.getText().toString()
+                        + "," +addressField.getText().toString() + ",,,,,,," +
+                        cityField.getText().toString() + ",,,,,,," +
+                        boroughField.getText().toString() + ",,,,,,,,,,,,,,,,,,,,,,,,,," +
+                        latitudeField.getText().toString() + "," +
+                        longitudeField.getText().toString() + ",,");
             }
         });
 

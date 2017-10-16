@@ -22,14 +22,12 @@ public class CSVFileWriter {
     public void writeHeader(String data) {
 
         try {
-            if (data != null) {
 
-                csvWriter = new PrintWriter(new FileWriter(file, true));
-                csvWriter.print(",");
-                csvWriter.print(data);
-                csvWriter.close();
+            csvWriter = new PrintWriter(new FileWriter(file, true));
+            //csvWriter.print(",");
+            csvWriter.print(data);
+            csvWriter.close();
 
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
