@@ -26,7 +26,15 @@ import java.io.File;
  */
 
 public class AddratActivity extends Activity {
+    private EditText uniqueKeyField;
+    private EditText createdDateField;
+    private EditText locationTypeField;
+    private EditText zipField;
+    private EditText addressField;
     private EditText cityField;
+    private EditText boroughField;
+    private EditText latitudeField;
+    private EditText longitudeField;
     CSVFileWriter csv;
     File file;
     StringBuffer filePath;
@@ -38,7 +46,15 @@ public class AddratActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrat);
 
+        uniqueKeyField = (EditText) findViewById(R.id.uniqueKey_text);
+        createdDateField = (EditText) findViewById(R.id.createDate_text);
+        locationTypeField = (EditText) findViewById(R.id.locationType_text);
+        zipField = (EditText) findViewById(R.id.zip_text);
+        addressField = (EditText) findViewById(R.id.address_text);
         cityField = (EditText) findViewById(R.id.city_text);
+        boroughField = (EditText) findViewById(R.id.borough_text);
+        latitudeField = (EditText) findViewById(R.id.latitude_text);
+        longitudeField = (EditText) findViewById(R.id.longitude_text);
         Button saveButton = (Button) findViewById(R.id.addratbutton);
 
         filePath = new StringBuffer();
@@ -51,7 +67,13 @@ public class AddratActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                csv.writeHeader(cityField.getText().toString());
+                csv.writeHeader(uniqueKeyField.getText().toString(),
+                        createdDateField.getText().toString(),,,,,
+                        locationTypeField.getText().toString(), zipField.getText().toString(),
+                        addressField.getText().toString(),,,,,,,
+                        cityField.getText().toString(),,,,,,,boroughField.getText().toString(),,,,,
+                        ,,,,,,,,,,,,,,,,,,,,,latitudeField.getText().toString(),
+                        longitudeField.getText().toString());
 
             }
         });
