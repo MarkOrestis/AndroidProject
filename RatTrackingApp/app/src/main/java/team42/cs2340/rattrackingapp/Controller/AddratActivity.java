@@ -29,6 +29,7 @@ public class AddratActivity extends Activity {
     private EditText cityField;
     CSVFileWriter csv;
     File file;
+    StringBuffer filePath;
 
     private Rat rat;
 
@@ -39,7 +40,10 @@ public class AddratActivity extends Activity {
 
         cityField = (EditText) findViewById(R.id.city_text);
         Button saveButton = (Button) findViewById(R.id.addratbutton);
-        file = new File("RatSighting.csv");
+
+        filePath = new StringBuffer();
+        filePath.append("/sdcard/abc.csv");
+        file = new File(filePath.toString());
         csv = new CSVFileWriter(file);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
