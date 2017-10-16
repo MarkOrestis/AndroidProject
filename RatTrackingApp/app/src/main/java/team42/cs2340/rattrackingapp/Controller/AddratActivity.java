@@ -36,65 +36,26 @@ public class AddratActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addrat);
-        cityField = (EditText) findViewById(R.id.city_text);
 
+        cityField = (EditText) findViewById(R.id.city_text);
+        Button saveButton = (Button) findViewById(R.id.addratbutton);
         file = new File("RatSighting.csv");
         csv = new CSVFileWriter(file);
 
-        cityField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.addratbutton || id == EditorInfo.IME_NULL) {
-                    register();
-                    return true;
-                }
-                return false;
-            }
-        });
-        Button mRegisterButton = (Button) findViewById(R.id.addratbutton);
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                register();
+
+                csv.writeHeader(cityField.getText().toString());
+
             }
         });
 
-        Button cancelButton = (Button) findViewById(R.id.canceladdratbutton);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                returnToDataScreen();
-            }
-        });
     }
 
     public void returnToDataScreen() {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
-    }
-
-    public void register() {
-        Model model = Model.getInstance();
-        String city = cityField.getText().toString();
-
-        boolean found = false;
-
-        int x = 0;
-
-        while (x < model.getRats().size()) {
-            if (model.getRats().get(x).getUniqueKey().equals(city)) {
-                found = true;
-            }
-            x++;
-        }
-        if (!found) {
-            model.addRat(rat);
-            Intent intent = new Intent(this, DataActivity.class);
-            startActivity(intent);
-        }
-
-        if (found) {
-            Toast.makeText(this, "Rat already exists.", Toast.LENGTH_SHORT).show();
-        }
     }
 }
