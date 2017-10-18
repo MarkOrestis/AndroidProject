@@ -37,7 +37,8 @@ public class AddratActivity extends Activity {
     private EditText latitudeField;
     private EditText longitudeField;
 
-    //private Spinner boroughSpinner;
+
+    private Spinner boroughSpinner;
 
     CSVFileWriter csv;
     File file;
@@ -60,6 +61,8 @@ public class AddratActivity extends Activity {
         latitudeField = (EditText) findViewById(R.id.latitude_text);
         longitudeField = (EditText) findViewById(R.id.longitude_text);
         Button saveButton = (Button) findViewById(R.id.addratbutton);
+
+        //boroughSpinner = (Spinner) findViewById(R.id.)
 
         filePath = new StringBuffer();
         filePath.append("/sdcard/abc.csv");
