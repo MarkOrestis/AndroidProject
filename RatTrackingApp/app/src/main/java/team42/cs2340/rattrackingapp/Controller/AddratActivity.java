@@ -19,6 +19,7 @@ import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.Model.Rat;
 import team42.cs2340.rattrackingapp.Model.User;
 import team42.cs2340.rattrackingapp.R;
+import android.content.Context;
 
 import java.io.File;
 
@@ -65,7 +66,7 @@ public class AddratActivity extends Activity {
         //boroughSpinner = (Spinner) findViewById(R.id.)
 
         filePath = new StringBuffer();
-        filePath.append("/res/raw/RatSighting.csv");
+        filePath.append("/res/raw/rat_sighting.csv");
         file = new File(filePath.toString());
         android.util.Log.v("Filepath", file.getAbsolutePath());
         csv = new CSVFileWriter(file);
