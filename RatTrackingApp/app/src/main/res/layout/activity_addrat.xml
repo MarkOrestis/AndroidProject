@@ -81,18 +81,15 @@
         android:backgroundTint="#d3d3d3"
         android:layout_weight="0.03" />
 
-    <EditText
-        android:id="@+id/borough_text"
+    <Spinner
+        android:id="@+id/boroughSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="240dp"
         android:layout_centerHorizontal="true"
         android:inputType="text"
-        android:hint="Borough"
-        android:textColorHint="#d3d3d3"
-        android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:textColorHint="#d3d3d3" />
 
     <EditText
         android:id="@+id/latitude_text"

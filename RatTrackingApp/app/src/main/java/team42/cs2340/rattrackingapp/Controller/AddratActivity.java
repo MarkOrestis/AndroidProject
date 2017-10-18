@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,9 @@ public class AddratActivity extends Activity {
     private EditText boroughField;
     private EditText latitudeField;
     private EditText longitudeField;
+
+    private Spinner boroughSpinner;
+
     CSVFileWriter csv;
     File file;
     StringBuffer filePath;
@@ -56,6 +60,7 @@ public class AddratActivity extends Activity {
         latitudeField = (EditText) findViewById(R.id.latitude_text);
         longitudeField = (EditText) findViewById(R.id.longitude_text);
         Button saveButton = (Button) findViewById(R.id.addratbutton);
+        boroughSpinner = (Spinner) findViewById(R.id.boroughSpinner);
 
         filePath = new StringBuffer();
         filePath.append("/sdcard/abc.csv");
