@@ -41,6 +41,14 @@ public class LaunchActivity extends Activity {
 
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome " + user + "!");
+
+        Button addRatButton = (Button) findViewById(R.id.ratbutton);
+        addRatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddRat();
+            }
+        });
     }
 
     public void logOut() {
@@ -50,6 +58,11 @@ public class LaunchActivity extends Activity {
 
     public void goToData() {
         Intent intent = new Intent(this, DataActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToAddRat() {
+        Intent intent = new Intent(this, AddratActivity.class);
         startActivity(intent);
     }
 

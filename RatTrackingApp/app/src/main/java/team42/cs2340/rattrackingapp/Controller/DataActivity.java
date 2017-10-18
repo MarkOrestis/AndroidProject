@@ -37,14 +37,6 @@ public class DataActivity extends Activity{
 
         mList.setAdapter(mAdapter);
 
-        Button addRatButton = (Button) findViewById(R.id.ratbutton);
-        addRatButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToAddRat();
-            }
-        });
-
         mList.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int pos,long id) {
@@ -65,8 +57,5 @@ public class DataActivity extends Activity{
 
     }
 
-    public void goToAddRat() {
-        Intent intent = new Intent(this, AddratActivity.class);
-        startActivity(intent);
-    }
+
 }
