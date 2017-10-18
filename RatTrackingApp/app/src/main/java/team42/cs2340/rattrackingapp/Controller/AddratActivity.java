@@ -75,7 +75,9 @@ public class AddratActivity extends Activity {
                         boroughField.getText().toString() + ",,,,,,,,,,,,,,,,,,,,,,,,,," +
                         latitudeField.getText().toString() + "," +
                         longitudeField.getText().toString() + ",,");
+                returnToDataScreen();
             }
+
         });
 
     }
