@@ -65,8 +65,9 @@ public class AddratActivity extends Activity {
         //boroughSpinner = (Spinner) findViewById(R.id.)
 
         filePath = new StringBuffer();
-        filePath.append("/sdcard/abc.csv");
+        filePath.append("/res/raw/RatSighting.csv");
         file = new File(filePath.toString());
+        android.util.Log.v("Filepath", file.getAbsolutePath());
         csv = new CSVFileWriter(file);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
