@@ -70,17 +70,8 @@ public class LaunchActivity extends Activity {
                 String[] rowData = line.split(",");
 
                 //Create a RatSighting object for each row data.
-                RatSightingData cur = new RatSightingData();
-                cur.setUniqueKey(rowData[0]);
-                cur.setCreatedDate(rowData[1]);
-                cur.setLocationType(rowData[7]);
-                cur.setIncidentZip(rowData[8]);
-                cur.setIncidentAddress(rowData[9]);
-                cur.setCity(rowData[16]);
-                cur.setBorough(rowData[23]);
-                cur.setLatitude(rowData[49]);
-                cur.setLongitude(rowData[50]);
-
+                RatSightingData cur = new RatSightingData(rowData[0], rowData[1], rowData[7],
+                        rowData[8], rowData[9], rowData[16], rowData[23], rowData[49], rowData[50]);
                 //Add the RatSightingData object to the ArrayList
                 model.addRat(cur);
             }

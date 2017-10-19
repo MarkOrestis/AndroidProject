@@ -15,6 +15,20 @@ public class RatSightingData {
     private String latitude;
     private String longitude;
 
+    public RatSightingData(String uniqueKey, String createdDate, String locationType,
+                           String incidentZip, String incidentAddress, String city,
+                           String borough, String latitude, String longitude) {
+        this.uniqueKey = uniqueKey;
+        this.createdDate = createdDate;
+        this.locationType = locationType;
+        this.incidentZip = incidentZip;
+        this.incidentAddress = incidentAddress;
+        this.city = city;
+        this.borough = borough;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public String getUniqueKey() {
         return uniqueKey;
     }

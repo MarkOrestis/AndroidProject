@@ -17,6 +17,7 @@ import android.widget.Toast;
 import team42.cs2340.rattrackingapp.Model.Admin;
 import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.Model.Rat;
+import team42.cs2340.rattrackingapp.Model.RatSightingData;
 import team42.cs2340.rattrackingapp.Model.User;
 import team42.cs2340.rattrackingapp.R;
 import android.content.Context;
@@ -44,7 +45,8 @@ public class AddratActivity extends Activity {
     CSVFileWriter csv;
     File file;
     StringBuffer filePath;
-    Model model;
+    Model model = Model.getInstance();
+    RatSightingData ratatat;
 
     private Rat rat;
 
@@ -77,14 +79,13 @@ public class AddratActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                csv.writeHeader(uniqueKeyField.getText().toString() + "," +
-                        createdDateField.getText().toString() + ",,,,," +
-                        locationTypeField.getText().toString()+ "," + zipField.getText().toString()
-                        + "," +addressField.getText().toString() + ",,,,,,," +
-                        cityField.getText().toString() + ",,,,,,," +
-                        boroughField.getText().toString() + ",,,,,,,,,,,,,,,,,,,,,,,,,," +
-                        latitudeField.getText().toString() + "," +
-                        longitudeField.getText().toString() + ",,");
+                ratatat = new RatSightingData(uniqueKeyField.getText().toString(),
+                        createdDateField.getText().toString(),
+                        locationTypeField.getText().toString(),zipField.getText().toString(),
+                        addressField.getText().toString(), cityField.getText().toString(),
+                        boroughField.getText().toString(), latitudeField.getText().toString(),
+                        longitudeField.getText().toString());
+                model.addRat(ratatat);
                 returnToDataScreen();
             }
 
