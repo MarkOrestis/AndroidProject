@@ -1,5 +1,10 @@
 package team42.cs2340.rattrackingapp.Model;
 
+import android.content.Context;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +17,8 @@ public class Model {
     public static Model getInstance() { return instance; }
 
     private List<User> users;
-    private List<Rat> rats;
+    private List<RatSightingData> rats;
+    Context csv;
 
     /**
      * No-arg constructor that creates an ArrayList of Users
@@ -20,8 +26,7 @@ public class Model {
     private Model() {
         users = new ArrayList<>();
         addUser(new User("a", "a"));
-        rats = new ArrayList<>();
-        addRat(new Rat("a"));
+        rats = new ArrayList<RatSightingData>();
     }
 
     /**
@@ -30,7 +35,7 @@ public class Model {
      */
     public List<User> getUsers() { return users; }
 
-    public List<Rat> getRats() {return rats; }
+    public List<RatSightingData> getRats() {return rats; }
 
     /**
      * Method to add a User to the ArrayList
@@ -50,8 +55,8 @@ public class Model {
      * @param newRat the User to be added to the ArrayList
      * @return whether or not the Rat was successfully added
      */
-    public boolean addRat(Rat newRat) {
-        for (Rat r : rats) {
+    public boolean addRat(RatSightingData newRat) {
+        for (RatSightingData r : rats) {
             if (r.getUniqueKey().equals(newRat.getUniqueKey())) return false;
         }
         rats.add(newRat);

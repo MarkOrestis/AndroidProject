@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.Model.RatSightingData;
 
 /**
@@ -18,48 +19,14 @@ import team42.cs2340.rattrackingapp.Model.RatSightingData;
 
 public class CSVAdapter extends ArrayAdapter<RatSightingData> {
     Context csv;
+    Model model = Model.getInstance();
 
     public CSVAdapter(Context context, int textViewResourceID) {
         super(context, textViewResourceID);
 
         //Store a reference to the context so we can use it to load a file from Model
-        this.csv = context;
+        addAll(model.getRats());
 
-        //Load the data
-        loadArrayFromFile();
-    }
-
-
-    private void loadArrayFromFile() {
-        try {
-            //Get input stream and Buffered Reader for our data file.
-            InputStream is = csv.getAssets().open("RatSighting.csv");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-
-            //Read each line
-            while ((line = reader.readLine()) != null) {
-                String[] rowData = line.split(",");
-
-                //Create a RatSighting object for each row data.
-                RatSightingData cur = new RatSightingData();
-                cur.setUniqueKey(rowData[0]);
-                cur.setCreatedDate(rowData[1]);
-                cur.setLocationType(rowData[7]);
-                cur.setIncidentZip(rowData[8]);
-                cur.setIncidentAddress(rowData[9]);
-                cur.setCity(rowData[16]);
-                cur.setBorough(rowData[23]);
-                cur.setLatitude(rowData[49]);
-                cur.setLongitude(rowData[50]);
-
-                //Add the RatSightingData object to the ArrayList
-                this.add(cur);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

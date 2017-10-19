@@ -28,10 +28,18 @@ public class CSVFileWriter {
 
         try {
 
+<<<<<<< Updated upstream
             stream = new FileOutputStream("RatSighting.csv");
             //csvWriter.print(",");
             stream.write(data.getBytes());
             stream.close();
+=======
+            csvWriter = new PrintWriter(new FileWriter(file, true));
+            //csvWriter.print(",dqeincdsvwecndfcewf9ucdnc");
+            csvWriter.print(data);
+            csvWriter.flush();
+            csvWriter.close();
+>>>>>>> Stashed changes
 
         } catch (IOException e) {
             e.printStackTrace();

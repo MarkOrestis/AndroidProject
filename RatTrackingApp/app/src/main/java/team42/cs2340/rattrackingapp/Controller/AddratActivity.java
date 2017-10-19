@@ -44,6 +44,7 @@ public class AddratActivity extends Activity {
     CSVFileWriter csv;
     File file;
     StringBuffer filePath;
+    Model model;
 
     private Rat rat;
 
