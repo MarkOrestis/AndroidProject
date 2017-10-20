@@ -74,7 +74,7 @@ public class AddratActivity extends Activity {
         /*
          * Set up adapter to display the allowable location types in the spinner
          */
-        ArrayAdapter<String> locationType_adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, LocationType.values());
+        ArrayAdapter<String> locationType_adapter = new ArrayAdapter(this, R.layout.spinner_item, LocationType.values());
         locationType_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationTypeSpinner.setAdapter(locationType_adapter);
 
@@ -82,7 +82,7 @@ public class AddratActivity extends Activity {
         /*
          * Set up adapter to display the allowable boroughs in the spinner
          */
-        ArrayAdapter<String> borough_adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Borough.values());
+        ArrayAdapter<String> borough_adapter = new ArrayAdapter(this, R.layout.spinner_item, Borough.values());
         borough_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boroughSpinner.setAdapter(borough_adapter);
 
