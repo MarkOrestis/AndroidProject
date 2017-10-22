@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
 import team42.cs2340.rattrackingapp.R;
 
 
@@ -14,7 +15,7 @@ import team42.cs2340.rattrackingapp.R;
  * The activity page that launches when a user succesfully logs in
  */
 public class LaunchActivity extends Activity {
-
+    private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,7 @@ public class LaunchActivity extends Activity {
         });
 
         TextView welcomeText = (TextView) findViewById(R.id.welcomeText);
-        welcomeText.setText("Welcome " + user + "!");
+        welcomeText.setText("Welcome!");
     }
 
     /**

@@ -1,125 +1,114 @@
 package team42.cs2340.rattrackingapp.Controller;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import team42.cs2340.rattrackingapp.Model.Admin;
-import team42.cs2340.rattrackingapp.Model.Model;
-import team42.cs2340.rattrackingapp.Model.User;
+import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
 import team42.cs2340.rattrackingapp.R;
 
+
 /**
- * The activity page that the user goes to when they want to register into the system
+ * Created by thoma on 9/29/2017.
  */
-public class RegisterActivity extends Activity {
-    private EditText emailField;
-    private EditText passwordField;
 
-    private User user;
-    private boolean admin = false;
+public class RegisterActivity extends AppCompatActivity {
 
+    //These are the fields that we needed intialized here.
+    // username, password, Info is how many attempts we have left
+    // Button for Login
+
+    private EditText Name;
+    private EditText Password;
+    private Button Signup;
+    private Button Back;
+    private Spinner AdminSpinner;
+    private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        emailField = (EditText) findViewById(R.id.email_text);
-        passwordField = (EditText) findViewById(R.id.password_text);
-        passwordField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.registrationButton || id == EditorInfo.IME_NULL) {
-                    register();
-                    return true;
-                }
-                return false;
-            }
-        });
-        Button mRegisterButton = (Button) findViewById(R.id.registrationButton);
-        mRegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                register();
-            }
-        });
+        Name = (EditText)findViewById(R.id.etName);
+        Password= (EditText)findViewById(R.id.etPassword);
+        Signup = (Button) findViewById(R.id.signupBtn);
+        Back = (Button) findViewById(R.id.backBtn);
 
-        Button cancelButton = (Button) findViewById(R.id.cancelRegistrationButton);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
+        Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                returnToWelcomeScreen();
+                validate(Name.getText().toString(),Password.getText().toString());
             }
         });
-    }
 
-    /**
-     * A click listener method that when clicked on, brings the user back to the welcome activity
-     * page
-     */
-    public void returnToWelcomeScreen() {
-        Intent intent = new Intent(this, WelcomeActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * This method decides whether the user will be an admin or a simple user of the app
-     * @param view The radio button views
-     */
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioAdmin:
-                if (checked)
-                    admin = true;
-                break;
-            case R.id.radioUser:
-                if (checked)
-                    admin = false;
-                break;
-        }
-    }
-
-    /**
-     * A method to register the user and check if the username is already in use.
-     */
-    public void register() {
-        Model model = Model.getInstance();
-        String email = emailField.getText().toString();
-
-        boolean found = false;
-
-        int x = 0;
-
-        while (x < model.getUsers().size()) {
-            if (model.getUsers().get(x).getUsername().equals(email)) {
-                found = true;
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
-            x++;
-        }
-        if (!found) {
-            if (admin) {
-                user = new Admin(emailField.getText().toString(), passwordField.getText().toString());
-            } else {
-                user = new User(emailField.getText().toString(), passwordField.getText().toString());
-            }
-            model.addUser(user);
-            Intent intent = new Intent(this, WelcomeActivity.class);
-            startActivity(intent);
-        }
+        });
 
-        if (found) {
-            Toast.makeText(this, "Username already exist, please use another one", Toast.LENGTH_SHORT).show();
+
+        AdminSpinner = (Spinner) findViewById(R.id.adminSpinner);
+        String[] adminArr = {"User", "Admin"};
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, adminArr);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        AdminSpinner.setAdapter(adapter);
+
+    }
+
+
+    /*
+    Method that validates username and password. Right now, it only checks is "user" is equal to the
+    * the password which is pass. The if loop does this check and if it is, there a new screen that
+    * appears which is an intent
+     */
+
+    private void validate(String userName, String userPassword) {
+        if ((userName.contains("@") && userPassword.length() >= 7)){
+
+            if(dbHelper.addUser(userName, userPassword, AdminSpinner.getSelectedItem().equals("Admin")) == -1) {
+                Toast.makeText(this,"User already exists", Toast.LENGTH_LONG).show();
+            }else {
+                Intent intent = new Intent(RegisterActivity.this, LaunchActivity.class);
+                intent.putExtra("userID", dbHelper.getUserID(userName));
+                startActivity(intent);
+            }
+        } else  if(!userName.contains("@")) {
+            Toast.makeText(this,"Must enter a valid email", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this,"Password must be longer than 7", Toast.LENGTH_LONG).show();
         }
     }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
+

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -13,6 +14,7 @@ import team42.cs2340.rattrackingapp.R;
  */
 
 public class WelcomeActivity extends Activity {
+    private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

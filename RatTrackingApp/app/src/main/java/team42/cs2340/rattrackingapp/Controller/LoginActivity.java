@@ -1,114 +1,110 @@
 package team42.cs2340.rattrackingapp.Controller;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import team42.cs2340.rattrackingapp.Model.Model;
+import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
 import team42.cs2340.rattrackingapp.R;
 
-/**
- * The activity page that launches when the user clicks login from the Welcome Activity page.
- */
-public class LoginActivity extends Activity {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+public class LoginActivity extends AppCompatActivity {
+    //These are the fields that we needed intialized here.
+    // username, password, Info is how many attempts we have left
+    // Button for Login
 
-    // UI references.
-    private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private EditText Name;
+    private EditText Password;
+    private TextView Info;
+    private Button Login;
+    private Button Signup;
+    private int counter = 3;
+    DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
 
     @Override
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.username);
+        //dbHelper.destroyPreviousDB();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
+        Name = (EditText) findViewById(R.id.etName);
+        Password = (EditText) findViewById(R.id.etPassword);
+        Info = (TextView) findViewById(R.id.numAttempts);
+        Login = (Button) findViewById(R.id.loginBtn);
+
+        Info.setText("");
+
+        Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                validate(Name.getText().toString(), Password.getText().toString());
             }
         });
 
-        Button cancelButton = (Button) findViewById(R.id.cancel_button);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                returnToWelcomeScreen();
-            }
-        });
+//        Signup = (Button) findViewById(R.id.signupBtn);
+//
+//
+//        Signup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(LoginActivity.this, SignupPage.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
-    /**
-     * Returns the user to the welcome screen when they press cancel from wanting to login again
+
+    /*
+    Method that validates username and password. Right now, it only checks is "user" is equal to the
+    * the password which is pass. The if loop does this check and if it is, there a new screen that
+    * appears which is an intent
      */
-    public void returnToWelcomeScreen() {
-        Intent intent = new Intent(this, WelcomeActivity.class);
-        startActivity(intent);
-    }
 
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
-    private void attemptLogin() {
+    private void validate(String userName, String userPassword) {
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        Model model = Model.getInstance();
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
-
-        boolean found = false;
-
-        int x = 0;
-        while (x < model.getUsers().size() && !found) {
-            if (model.getUsers().get(x).getUsername().equals(email)
-                    && model.getUsers().get(x).getPassword().equals(password)) {
-                Intent intent = new Intent(this, LaunchActivity.class);
-                intent.putExtra("Username", email);
-                startActivity(intent);
-                found = true;
+        if (dbHelper.checkPassword(userName, userPassword)) {
+            Intent intent = new Intent(LoginActivity.this, LaunchActivity.class);
+            intent.putExtra("userID", dbHelper.getUserID(userName));
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Improper Login", Toast.LENGTH_LONG).show();
+            counter--;
+            Info.setText("No attempts left: " + String.valueOf(counter));
+            if (counter == 0) {
+                Login.setEnabled(false);
             }
-            x++;
-        }
-        if (!found) {
-            Toast.makeText(this, "Invalid Username and Password", Toast.LENGTH_SHORT).show();
         }
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 }
-
