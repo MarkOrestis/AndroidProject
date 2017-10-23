@@ -93,6 +93,9 @@ public class AddratActivity extends Activity {
 
     }
 
+    /**
+     * A public method to get back to the screen that displays the data.
+     */
     public void returnToDataScreen() {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
