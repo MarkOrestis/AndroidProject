@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import team42.cs2340.rattrackingapp.Model.Admin;
+import team42.cs2340.rattrackingapp.Model.Borough;
+import team42.cs2340.rattrackingapp.Model.LocationType;
 import team42.cs2340.rattrackingapp.Model.Model;
 import team42.cs2340.rattrackingapp.Model.Rat;
 import team42.cs2340.rattrackingapp.Model.RatSightingData;
