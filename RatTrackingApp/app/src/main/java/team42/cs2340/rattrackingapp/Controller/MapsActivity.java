@@ -9,6 +9,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import team42.cs2340.rattrackingapp.R;
+import team42.cs2340.rattrackingapp.Model.Admin;
+import team42.cs2340.rattrackingapp.Model.Borough;
+import team42.cs2340.rattrackingapp.Model.LocationType;
+import team42.cs2340.rattrackingapp.Model.Model;
+import team42.cs2340.rattrackingapp.Model.Rat;
+import team42.cs2340.rattrackingapp.Model.RatSightingData;
+import team42.cs2340.rattrackingapp.Model.User;
+import team42.cs2340.rattrackingapp.R;
+import android.content.Context;
 
 /**
  * Created by Beatrice on 10/25/17.
