@@ -59,6 +59,14 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button viewMapsButton = (Button) findViewById(R.id.mapbutton);
+        viewMapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMaps();
+            }
+        });
+
         try {
             //Get input stream and Buffered Reader for our data file.
             InputStream is = getApplicationContext().getAssets().open("RatSighting.csv");
@@ -93,6 +101,11 @@ public class LaunchActivity extends Activity {
 
     public void goToAddRat() {
         Intent intent = new Intent(this, AddratActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToMaps() {
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

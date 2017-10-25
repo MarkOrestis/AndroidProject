@@ -63,6 +63,15 @@
                 android:value=".Controller.LoginActivity" />
         </activity>
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <activity android:name=".Controller.MapsActivity"
+            android:parentActivityName=".Controller.LaunchActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Controller.LoginActivity" />
+        </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCnt4sqbG5W1KAxxV_P7kiIhw8sCm_M01Q"/>
     </application>
 
 </manifest>
