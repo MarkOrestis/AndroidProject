@@ -38,13 +38,13 @@ public class AddratActivity extends Activity {
     private EditText zipField;
     private EditText addressField;
     private EditText cityField;
-    private EditText boroughField;
+    // private EditText boroughField;
     private EditText latitudeField;
     private EditText longitudeField;
 
 
-    private Spinner locationTypeSpinner;
     private Spinner boroughSpinner;
+    private Spinner locationTypeSpinner;
 
     CSVFileWriter csv;
     File file;
@@ -74,7 +74,7 @@ public class AddratActivity extends Activity {
         /*
          * Set up adapter to display the allowable location types in the spinner
          */
-        ArrayAdapter<String> locationType_adapter = new ArrayAdapter(this, R.layout.spinner_item, LocationType.values());
+        ArrayAdapter<String> locationType_adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, LocationType.values());
         locationType_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         locationTypeSpinner.setAdapter(locationType_adapter);
 
@@ -82,7 +82,7 @@ public class AddratActivity extends Activity {
         /*
          * Set up adapter to display the allowable boroughs in the spinner
          */
-        ArrayAdapter<String> borough_adapter = new ArrayAdapter(this, R.layout.spinner_item, Borough.values());
+        ArrayAdapter<String> borough_adapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, Borough.values());
         borough_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         boroughSpinner.setAdapter(borough_adapter);
 
@@ -99,9 +99,9 @@ public class AddratActivity extends Activity {
 
                 ratatat = new RatSightingData(uniqueKeyField.getText().toString(),
                         createdDateField.getText().toString(),
-                        locationTypeField.getText().toString(),zipField.getText().toString(),
+                        locationTypeSpinner.getSelectedItem().toString(),zipField.getText().toString(),
                         addressField.getText().toString(), cityField.getText().toString(),
-                        boroughField.getText().toString(), latitudeField.getText().toString(),
+                        boroughSpinner.getSelectedItem().toString(), latitudeField.getText().toString(),
                         longitudeField.getText().toString());
                 model.addRat(ratatat);
                 returnToDataScreen();
