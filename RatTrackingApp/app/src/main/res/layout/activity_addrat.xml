@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#292929"
+    android:textColor = "#d3d3d3"
     android:layout_height="match_parent">
 
     <EditText
@@ -8,126 +10,142 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
         android:inputType="number"
         android:hint="Unique key"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/createDate_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="90dp"
-        android:layout_centerHorizontal="true"
         android:inputType="date"
         android:hint="Created date"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:layout_below="@+id/uniqueKey_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor = "#d3d3d3"/>
 
-    <EditText
-        android:id="@+id/locationType_text"
+    <Spinner
+        android:id="@+id/locationType_Spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="120dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
-        android:hint="Location Type"
         android:textColorHint="#d3d3d3"
-        android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/createDate_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/zip_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="150dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="Zip code"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/locationType_Spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/address_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="180dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="Address"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/zip_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/city_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="210dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="City"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/address_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <EditText
-        android:id="@+id/borough_text"
+    <Spinner
+        android:id="@+id/borough_Spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="240dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
-        android:hint="Borough"
         android:textColorHint="#d3d3d3"
-        android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03"/>
+        android:textColor = "#d3d3d3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/city_text" />
 
     <EditText
         android:id="@+id/latitude_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="270dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="Latitude"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/borough_Spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/longitude_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:layout_marginTop="300dp"
-        android:layout_centerHorizontal="true"
         android:inputType="text"
         android:hint="Longitude"
         android:textColorHint="#d3d3d3"
         android:backgroundTint="#d3d3d3"
-        android:layout_weight="0.03" />
+        android:layout_weight="0.03"
+        android:textColor = "#d3d3d3"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/borough_Spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/addratbutton"
         android:layout_width="100dp"
         android:layout_height="42dp"
-        android:layout_marginTop="350dp"
-        android:layout_marginRight="15dp"
-        android:layout_alignParentRight="true"
+        android:layout_marginRight="21dp"
         android:background="#92cbc5"
-        android:text="Add Rat"/>
+        android:text="Add Rat"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="24dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
