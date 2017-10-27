@@ -147,6 +147,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         if (mAuthListener != null) {
+
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }

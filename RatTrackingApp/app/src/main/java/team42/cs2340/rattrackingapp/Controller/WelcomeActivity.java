@@ -11,10 +11,13 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -32,6 +35,28 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        //reading csv
+        InputStream inputStream = getResources().openRawResource(R.raw.tinyratsighting);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+        try {
+            String rawReport;
+            while((rawReport = bufferedReader.readLine()) != null) {
+                String[] split = rawReport.split(",", -1);
+                Sighting report = new Sighting(split[0],
+                        split[1],
+                        split[7],
+                        split[8],
+                        split[9],
+                        split[16],
+                        split[23],
+                        split[50],
+                        split[51]);
+            }
+        } catch (IOException e) {
+
+        }
+
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -40,7 +65,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    //startActivity(new Intent(WelcomeScreen.this, MainPage.class));
+                    startActivity(new Intent(WelcomeActivity.this, LaunchActivity.class));
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -72,7 +97,6 @@ public class WelcomeActivity extends AppCompatActivity {
      * screen.
      */
     public void goToLoginScreen() {
-        mAuth.signOut();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
