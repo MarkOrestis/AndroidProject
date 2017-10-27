@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cs2340.ratapplication.cs2340.ratapplication.controllers.SignupPage"
+    tools:context="team42.cs2340.rattrackingapp.Controller.RegisterActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -56,18 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="176dp"
+        android:layout_marginStart="68dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="66dp" />
-
-    <RadioGroup
-        android:id="@+id/radioUserType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="205dp">
-
-    </RadioGroup>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

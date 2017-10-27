@@ -17,8 +17,10 @@ import team42.cs2340.rattrackingapp.R;
  */
 
 public class LoginActivity extends AppCompatActivity {
+
     private DatabaseReference mDatabase;
     private Button bLogin;
+    private Button bBack;
     private EditText emailField;
     private EditText passwordField;
     @Override
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         emailField = (EditText) findViewById(R.id.email);
         passwordField = (EditText) findViewById(R.id.password);
+
         bLogin = (Button) findViewById(R.id.loginBtn);
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +39,22 @@ public class LoginActivity extends AppCompatActivity {
                 goToLaunchScreen();
             }
         });
+
+        bBack = (Button) findViewById(R.id.backBtn);
+        bBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToWelcomeActivity();
+            }
+        });
     }
 
     public void goToLaunchScreen() {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToWelcomeActivity() {
         Intent intent = new Intent(this, WelcomeActivity.class);
         startActivity(intent);
     }

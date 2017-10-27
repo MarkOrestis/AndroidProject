@@ -55,23 +55,19 @@
         android:layout_marginTop="8dp"
         android:text="login"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.81"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.075" />
 
-    <TextView
-        android:id="@+id/numAttempts"
+    <Button
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Number of Attempts"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginLeft="60dp"
+        android:text="Back"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteY="220dp" />
 
 </android.support.constraint.ConstraintLayout>
