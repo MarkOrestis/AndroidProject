@@ -41,4 +41,22 @@
         android:layout_marginTop="120dp"
         android:src="@drawable/rat"/>
 
+    <Button
+        android:id="@+id/ratbutton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:text="Add Rat"
+        android:background="#92cbc5"/>
+
+    <Button
+        android:id="@+id/mapbutton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:text="View Maps"
+        android:background="#92cbc5"/>
+
 </RelativeLayout>

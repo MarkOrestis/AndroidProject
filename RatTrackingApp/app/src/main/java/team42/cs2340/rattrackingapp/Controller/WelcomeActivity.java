@@ -3,6 +3,7 @@ package team42.cs2340.rattrackingapp.Controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,7 +17,7 @@ import team42.cs2340.rattrackingapp.R;
  * The first activity page that is launched when the user first opens the application.
  */
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -58,15 +58,16 @@ public class RegisterActivity extends AppCompatActivity{
             }
         };
 
-        bBack = (Button) findViewById(R.id.backRegister);
-        bSignup = (Button) findViewById(R.id.signupRegister);
+        bBack = (Button) findViewById(R.id.cancelRegistrationButton);
+        bSignup = (Button) findViewById(R.id.registrationButton);
 
-        emailField = (EditText) findViewById(R.id.etName);
-        passwordField = (EditText) findViewById(R.id.etPassword);
+        emailField = (EditText) findViewById(R.id.email_text);
+        passwordField = (EditText) findViewById(R.id.password_text);
 
         bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
@@ -86,11 +87,11 @@ public class RegisterActivity extends AppCompatActivity{
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(this, "Please enter a username", Toast.LENGTH_SHORT).show();
-            //return; ??
+            return;
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please enter a password", Toast.LENGTH_SHORT).show();
-            //return; ??
+            return;
         }
 
         mAuth.createUserWithEmailAndPassword(email, password)

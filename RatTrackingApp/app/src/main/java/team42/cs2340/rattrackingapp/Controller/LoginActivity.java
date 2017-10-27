@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         emailField = (EditText) findViewById(R.id.email);
         passwordField = (EditText) findViewById(R.id.password);
 
-        bLogin = (Button) findViewById(R.id.loginBtn);
+        bLogin = (Button) findViewById(R.id.email_sign_in_button);
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        bBack = (Button) findViewById(R.id.backBtn);
+        bBack = (Button) findViewById(R.id.cancel_button);
         bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void goToLaunchScreen() {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+        Intent intent = new Intent(this, LaunchActivity.class);
         startActivity(intent);
     }
 

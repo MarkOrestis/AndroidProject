@@ -21,8 +21,8 @@
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        android:background="@color/colorAccent"
-        android:text="Log in" />
+        android:text="Log in"
+        android:background="#92cbc5"/>
 
     <Button
         android:id="@+id/registerbtn"
