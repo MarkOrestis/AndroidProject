@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="0.055" />
 
     <Button
-        android:id="@+id/signupBtn"
+        android:id="@+id/signupRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="176dp"
@@ -52,7 +52,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
-        android:id="@+id/backBtn"
+        android:id="@+id/backRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="176dp"

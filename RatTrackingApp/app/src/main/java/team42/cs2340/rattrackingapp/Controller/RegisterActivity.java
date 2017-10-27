@@ -58,8 +58,8 @@ public class RegisterActivity extends AppCompatActivity{
             }
         };
 
-        bBack = (Button) findViewById(R.id.backBtn);
-        bSignup = (Button) findViewById(R.id.signupBtn);
+        bBack = (Button) findViewById(R.id.backRegister);
+        bSignup = (Button) findViewById(R.id.signupRegister);
 
         emailField = (EditText) findViewById(R.id.etName);
         passwordField = (EditText) findViewById(R.id.etPassword);
