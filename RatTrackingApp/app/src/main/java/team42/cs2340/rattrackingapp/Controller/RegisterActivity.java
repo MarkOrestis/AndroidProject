@@ -16,10 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.HashMap;
-
 import team42.cs2340.rattrackingapp.R;
+
 
 /**
  * Created by Orestis Markozanes on 10/26/2017.
@@ -49,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity{
                 if (user != null) {
                     Log.d(TAG, "onAuthStateChanged:signed_in" + user.getUid());
                     Intent intent = new Intent(RegisterActivity.this,
-                            LoginActivity.class );
+                            LaunchActivity.class );
                     startActivity(intent);
                 } else {
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -57,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity{
 
             }
         };
+
 
         bBack = (Button) findViewById(R.id.cancelRegistrationButton);
         bSignup = (Button) findViewById(R.id.registrationButton);
@@ -67,7 +66,6 @@ public class RegisterActivity extends AppCompatActivity{
         bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
                 Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
@@ -95,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity{
         }
 
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
@@ -104,8 +102,10 @@ public class RegisterActivity extends AppCompatActivity{
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                            Toast.makeText(RegisterActivity.this, R.string.auth_failed,
+                            Toast.makeText(RegisterActivity.this, task.getException().getMessage(),
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            startActivity(new Intent(RegisterActivity.this, LaunchActivity.class));
                         }
                     }
 
