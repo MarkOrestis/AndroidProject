@@ -4,107 +4,42 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import team42.cs2340.rattrackingapp.R;
 
+/**
+ * Created by Orestis Markozanes on 10/25/2017.
+ */
 
 public class LoginActivity extends AppCompatActivity {
-    //These are the fields that we needed intialized here.
-    // username, password, Info is how many attempts we have left
-    // Button for Login
-
-    private EditText Name;
-    private EditText Password;
-    private TextView Info;
-    private Button Login;
-    private Button Signup;
-    private int counter = 3;
-    DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
-
+    private DatabaseReference mDatabase;
+    private Button bLogin;
+    private EditText emailField;
+    private EditText passwordField;
     @Override
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //dbHelper.destroyPreviousDB();
 
-
-        Name = (EditText) findViewById(R.id.etName);
-        Password = (EditText) findViewById(R.id.etPassword);
-        Info = (TextView) findViewById(R.id.numAttempts);
-        Login = (Button) findViewById(R.id.loginBtn);
-
-        Info.setText("");
-
-        Login.setOnClickListener(new View.OnClickListener() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        emailField = (EditText) findViewById(R.id.email);
+        passwordField = (EditText) findViewById(R.id.password);
+        bLogin = (Button) findViewById(R.id.loginBtn);
+        bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(Name.getText().toString(), Password.getText().toString());
+                goToLaunchScreen();
             }
         });
-
-//        Signup = (Button) findViewById(R.id.signupBtn);
-//
-//
-//        Signup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(LoginActivity.this, SignupPage.class);
-//                startActivity(intent);
-//            }
-//        });
     }
 
-
-    /*
-    Method that validates username and password. Right now, it only checks is "user" is equal to the
-    * the password which is pass. The if loop does this check and if it is, there a new screen that
-    * appears which is an intent
-     */
-
-    private void validate(String userName, String userPassword) {
-
-        if (dbHelper.checkPassword(userName, userPassword)) {
-            Intent intent = new Intent(LoginActivity.this, LaunchActivity.class);
-            intent.putExtra("userID", dbHelper.getUserID(userName));
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Improper Login", Toast.LENGTH_LONG).show();
-            counter--;
-            Info.setText("No attempts left: " + String.valueOf(counter));
-            if (counter == 0) {
-                Login.setEnabled(false);
-            }
-        }
+    public void goToLaunchScreen() {
+        Intent intent = new Intent(this, WelcomeActivity.class);
+        startActivity(intent);
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

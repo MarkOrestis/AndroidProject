@@ -1,27 +1,43 @@
 {
   "project_info": {
-    "project_number": "843296873864",
-    "firebase_url": "https://rattrackingaapp.firebaseio.com",
-    "project_id": "rattrackingaapp",
-    "storage_bucket": "rattrackingaapp.appspot.com"
+    "project_number": "953060175016",
+    "firebase_url": "https://rattrackingapp.firebaseio.com",
+    "project_id": "rattrackingapp",
+    "storage_bucket": "rattrackingapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:843296873864:android:feb9547c15ca292f",
+        "mobilesdk_app_id": "1:953060175016:android:feb9547c15ca292f",
         "android_client_info": {
           "package_name": "team42.cs2340.rattrackingapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "843296873864-3saagtsvj7lv5s7o1a2jedcjij0bc034.apps.googleusercontent.com",
+          "client_id": "953060175016-oj0v99fs8040qg7l69v5qgj4ki22ske1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team42.cs2340.rattrackingapp",
+            "certificate_hash": "a0e9c87082032f19dc76a4a9b3216b4eed546033"
+          }
+        },
+        {
+          "client_id": "953060175016-s4g4oqpque4uapneu75a46v8ia8ffb4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team42.cs2340.rattrackingapp",
+            "certificate_hash": "c95f7c5a0e472fda64c358b1da0412791a0ab2da"
+          }
+        },
+        {
+          "client_id": "953060175016-q1csnd9tktpqn6gpe7mig57elksdf94l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCtf7E6X7Bxzxa0VE3zciP4GW4Tlo2ajOY"
+          "current_key": "AIzaSyAEH1cBqVibgqhYONye1CfEE3Au9iB4SuE"
         }
       ],
       "services": {
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953060175016-q1csnd9tktpqn6gpe7mig57elksdf94l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

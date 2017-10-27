@@ -2,113 +2,83 @@ package team42.cs2340.rattrackingapp.Controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+
 import team42.cs2340.rattrackingapp.R;
 
-
 /**
- * Created by thoma on 9/29/2017.
+ * Created by Orestis Markozanes on 10/26/2017.
  */
 
-public class RegisterActivity extends AppCompatActivity {
-
-    //These are the fields that we needed intialized here.
-    // username, password, Info is how many attempts we have left
-    // Button for Login
-
-    private EditText Name;
-    private EditText Password;
-    private Button Signup;
-    private Button Back;
-    private Spinner AdminSpinner;
-    private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
-    @Override
-
+public class RegisterActivity extends AppCompatActivity{
+    private Button bSignup;
+    private Button bBack;
+    private EditText emailField;
+    private EditText passwordField;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Name = (EditText)findViewById(R.id.etName);
-        Password= (EditText)findViewById(R.id.etPassword);
-        Signup = (Button) findViewById(R.id.signupBtn);
-        Back = (Button) findViewById(R.id.backBtn);
 
-        Signup.setOnClickListener(new View.OnClickListener() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+
+
+        bBack = (Button) findViewById(R.id.backBtn);
+        bSignup = (Button) findViewById(R.id.signupBtn);
+
+        emailField = (EditText) findViewById(R.id.etName);
+        passwordField = (EditText) findViewById(R.id.etPassword);
+
+        bBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(Name.getText().toString(),Password.getText().toString());
-            }
-        });
-
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                Intent intent = new Intent(RegisterActivity.this, WelcomeActivity.class);
                 startActivity(intent);
             }
         });
 
-
-        AdminSpinner = (Spinner) findViewById(R.id.adminSpinner);
-        String[] adminArr = {"User", "Admin"};
-        ArrayAdapter<CharSequence> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, adminArr);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        AdminSpinner.setAdapter(adapter);
-
-    }
-
-
-    /*
-    Method that validates username and password. Right now, it only checks is "user" is equal to the
-    * the password which is pass. The if loop does this check and if it is, there a new screen that
-    * appears which is an intent
-     */
-
-    private void validate(String userName, String userPassword) {
-        if ((userName.contains("@") && userPassword.length() >= 7)){
-
-            if(dbHelper.addUser(userName, userPassword, AdminSpinner.getSelectedItem().equals("Admin")) == -1) {
-                Toast.makeText(this,"User already exists", Toast.LENGTH_LONG).show();
-            }else {
-                Intent intent = new Intent(RegisterActivity.this, LaunchActivity.class);
-                intent.putExtra("userID", dbHelper.getUserID(userName));
-                startActivity(intent);
+        bSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToSignUp();
             }
-        } else  if(!userName.contains("@")) {
-            Toast.makeText(this,"Must enter a valid email", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this,"Password must be longer than 7", Toast.LENGTH_LONG).show();
-        }
+        });
     }
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+
+    public void goToSignUp() {
+        String email = emailField.getText().toString().trim();
+        String password = passwordField.getText().toString().trim();
+
+        HashMap<String, String> dataMap = new HashMap<>();
+        dataMap.put("Email", email);
+        dataMap.put("Password", password);
+
+        mDatabase.push().setValue(dataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(RegisterActivity.this, "User successfully registered", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 }
-

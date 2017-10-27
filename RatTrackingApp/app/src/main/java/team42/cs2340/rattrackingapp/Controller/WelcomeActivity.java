@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import team42.cs2340.rattrackingapp.Model.DatabaseHelper;
 import team42.cs2340.rattrackingapp.R;
 
@@ -14,11 +17,13 @@ import team42.cs2340.rattrackingapp.R;
  */
 
 public class WelcomeActivity extends Activity {
-    private DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
+    private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         Button loginButton = (Button) findViewById(R.id.loginbtn);
         loginButton.setOnClickListener(new View.OnClickListener() {
