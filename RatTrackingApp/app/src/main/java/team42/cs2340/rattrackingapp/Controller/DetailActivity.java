@@ -36,12 +36,15 @@ public class DetailActivity extends AppCompatActivity {
 
         sightingKey = getIntent().getStringExtra("Detail");
         Log.d(TAG,"TEST:" + sightingKey);
-        mDatabase = FirebaseDatabase.getInstance().getReference(sightingKey);
+        mDatabase = FirebaseDatabase.getInstance().getReference("Sightings").child(sightingKey);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
+
+                Log.d(TAG, "Children:" + dataSnapshot.getChildrenCount());
+
 
                 if (key.equals("City")) {
                     String value = (String) dataSnapshot.getValue();

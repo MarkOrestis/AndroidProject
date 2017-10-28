@@ -22,6 +22,7 @@ public class LaunchActivity extends AppCompatActivity {
 
     private Button logOut;
     private Button viewData;
+    private Button addRat;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LaunchActivity";
@@ -61,6 +62,14 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LaunchActivity.this, DataActivity.class));
+            }
+        });
+
+        addRat = (Button) findViewById(R.id.ratbutton);
+        addRat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LaunchActivity.this, ReportActivity.class));
             }
         });
     }

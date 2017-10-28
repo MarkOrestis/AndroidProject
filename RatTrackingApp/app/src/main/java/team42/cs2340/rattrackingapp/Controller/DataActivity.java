@@ -42,7 +42,7 @@ public class DataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference("Sightings");
         sightingList = (ListView) findViewById(R.id.mList);
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
