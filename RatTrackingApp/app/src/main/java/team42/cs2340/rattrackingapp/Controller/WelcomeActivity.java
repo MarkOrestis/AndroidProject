@@ -39,23 +39,6 @@ public class WelcomeActivity extends AppCompatActivity {
         InputStream inputStream = getResources().openRawResource(R.raw.tinyratsighting);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        try {
-            String rawReport;
-            while((rawReport = bufferedReader.readLine()) != null) {
-                String[] split = rawReport.split(",", -1);
-                Sighting report = new Sighting(split[0],
-                        split[1],
-                        split[7],
-                        split[8],
-                        split[9],
-                        split[16],
-                        split[23],
-                        split[50],
-                        split[51]);
-            }
-        } catch (IOException e) {
-
-        }
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {

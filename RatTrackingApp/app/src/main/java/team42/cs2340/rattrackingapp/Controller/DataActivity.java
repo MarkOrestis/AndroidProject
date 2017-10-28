@@ -1,10 +1,14 @@
 package team42.cs2340.rattrackingapp.Controller;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -56,7 +60,7 @@ public class DataActivity extends AppCompatActivity {
             }
         };
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, sightings);
         sightingList.setAdapter(arrayAdapter);
 
@@ -65,10 +69,9 @@ public class DataActivity extends AppCompatActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 String key = dataSnapshot.getKey();
-                Log.d(TAG, "Datasnapshot:" + dataSnapshot.getKey());
+                Log.d(TAG, "Datasnapshot:" + dataSnapshot.getChildrenCount());
 
-
-                sightings.add("Sighting: " + key);
+                sightings.add(key);
                 arrayAdapter.notifyDataSetChanged();
             }
 
@@ -90,6 +93,18 @@ public class DataActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+            }
+        });
+
+        sightingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
+                String string = arrayAdapter.getItem(pos);
+                Log.d(TAG, "TESTING:" + string);
+
+                Intent intent = new Intent(DataActivity.this, DetailActivity.class);
+                intent.putExtra("Detail", string);
+                startActivity(intent);
             }
         });
     }

@@ -22,7 +22,8 @@
         <activity android:name=".Controller.LoginActivity"/>
         <activity android:name=".Controller.RegisterActivity"/>
         <activity android:name=".Controller.LaunchActivity"/>
-        <activity android:name=".Controller.DataActivity">
+        <activity android:name=".Controller.DataActivity"/>
+        <activity android:name=".Controller.DetailActivity">
         </activity>
     </application>
 

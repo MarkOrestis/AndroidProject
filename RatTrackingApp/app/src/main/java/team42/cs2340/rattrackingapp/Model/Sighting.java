@@ -44,7 +44,7 @@ public class Sighting {
      * @param Longitude
      */
     public Sighting(String Unique_Key,String Date, String Location_Type,String Incident_Zip,String Incident_Address,
-               String City,String Borough,String Latitude,String Longitude) {
+                    String City,String Borough,String Latitude,String Longitude) {
         this.uniqueKey = Unique_Key;
         this.date = Date;
         this.locationType = Location_Type;
