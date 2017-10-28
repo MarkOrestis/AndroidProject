@@ -21,6 +21,7 @@ import team42.cs2340.rattrackingapp.R;
 public class LaunchActivity extends AppCompatActivity {
 
     private Button logOut;
+    private Button viewData;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LaunchActivity";
@@ -52,6 +53,14 @@ public class LaunchActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mAuth.signOut();
                 startActivity(new Intent(LaunchActivity.this, WelcomeActivity.class));
+            }
+        });
+
+        viewData = (Button) findViewById(R.id.dataButton);
+        viewData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LaunchActivity.this, DataActivity.class));
             }
         });
     }

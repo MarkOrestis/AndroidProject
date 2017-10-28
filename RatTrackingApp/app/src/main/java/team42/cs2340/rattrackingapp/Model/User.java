@@ -5,7 +5,8 @@ package team42.cs2340.rattrackingapp.Model;
  */
 
 public class User {
-    public String username;
-    public String password;
+    private String email;
+    private String password;
+    private boolean isAdmin;
 
 }

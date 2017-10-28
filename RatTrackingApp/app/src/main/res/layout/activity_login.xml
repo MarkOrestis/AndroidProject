@@ -9,7 +9,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:paddingTop="16dp"
-    tools:context= "team42.cs2340.rattrackingapp.Controller.LoginActivity">
+    tools:context= ".Controller.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
