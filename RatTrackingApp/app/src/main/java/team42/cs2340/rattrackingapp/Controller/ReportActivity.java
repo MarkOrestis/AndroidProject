@@ -40,7 +40,7 @@ public class ReportActivity extends AppCompatActivity {
     private EditText zipField;
     private EditText addressField;
     private EditText cityField;
-    // private EditText boroughField;
+    private EditText boroughField;
     private EditText latitudeField;
     private EditText longitudeField;
     private static final String TAG = "ReportActivity";
@@ -51,6 +51,14 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report);
 
         cityField = (EditText) findViewById(R.id.city_text);
+        //createdDateField = (EditText) findViewById(R.id.city_text);
+        addressField = (EditText) findViewById(R.id.address_text);
+        latitudeField = (EditText) findViewById(R.id.latitude_text);
+        longitudeField = (EditText) findViewById(R.id.longitude_text);
+        zipField = (EditText) findViewById(R.id.zip_text);
+        //boroughField = (EditText) findViewById(R.id.borough_Spinner);
+
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
@@ -68,6 +76,14 @@ public class ReportActivity extends AppCompatActivity {
         //passwordField.setError(null);
 
         final String city = cityField.getText().toString();
+        final String address = addressField.getText().toString();
+        final String latitude = latitudeField.getText().toString();
+        final String longitude = longitudeField.getText().toString();
+        final String zip = zipField.getText().toString();
+        final Long zip2 = Long.parseLong(zip);
+        final Double latitude2 = Double.parseDouble(latitude);
+        final Double longitude2 = Double.parseDouble(longitude);
+
         //String password = passwordField.getText().toString().trim();
 
         sighting.setCity(city);
@@ -75,12 +91,20 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String childrenCount = Long.toString(dataSnapshot.getChildrenCount());
-                DatabaseReference sightings = mDatabase.child(childrenCount);
+                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
+                mDatabase.child("Sightings").child(childrenCount).child("Incident Address").setValue(address);
+                mDatabase.child("Sightings").child(childrenCount).child("Incident Zip").setValue(zip2);
+                Log.d(TAG, latitude2.getClass().toString());
+                mDatabase.child("Sightings").child(childrenCount).child("Latitude").setValue(latitude2);
+                mDatabase.child("Sightings").child(childrenCount).child("Longitude").setValue(longitude2);
+//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
+//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
+//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
                 String key = dataSnapshot.getKey();
 
                 //sighting.getCity() = city input
 
-                //Log.d(TAG, "Datasnapshot:" + );
+                Log.d(TAG, "Datasnapshot:" + dataSnapshot.getChildrenCount() );
             }
 
             @Override

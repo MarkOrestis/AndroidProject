@@ -74,7 +74,8 @@ public class DetailActivity extends AppCompatActivity {
                       sighting.setBorough(value);
                   }
                 if (key.equals("Latitude")) {
-                    String value = Double.toString((Double) dataSnapshot.getValue());
+                    Log.d(TAG, "Latitude:" + dataSnapshot.getValue().getClass());
+                    String value = String.valueOf(dataSnapshot.getValue());
                     sighting.setLatitude(value);
                 }
                 if (key.equals("Longitude")) {
@@ -84,6 +85,7 @@ public class DetailActivity extends AppCompatActivity {
                     sighting.setLongitude(value);
                 }
                 TextView tv = ((TextView) findViewById(R.id.ratDetail));
+                //tv.setText(sighting.getCity());
                 tv.setText("Created Date: " + sighting.getDate() + "\n"
                         +"Location Type: " + sighting.getLocationType() + "\n"
                         +"Incident Zip: " + sighting.getIncidentZip() + "\n"
