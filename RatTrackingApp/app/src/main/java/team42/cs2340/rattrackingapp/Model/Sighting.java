@@ -56,6 +56,12 @@ public class Sighting {
         this.longitude = Longitude;
     }
 
+    public Sighting(String uniquekey, String Date) {
+        this();
+        this.uniqueKey = uniquekey;
+        this.date = Date;
+    }
+
     /**
      * getter method for unique key.
      * @return unique key of the object

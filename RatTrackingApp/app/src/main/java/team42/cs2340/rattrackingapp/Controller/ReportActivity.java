@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import team42.cs2340.rattrackingapp.Model.Borough;
+import team42.cs2340.rattrackingapp.Model.LocationType;
 import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.R;
 
@@ -36,11 +41,13 @@ public class ReportActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Button addRat;
     private EditText createdDateField;
-    private EditText locationTypeField;
+    //private EditText locationTypeField;
+    private Spinner locationTypeSpinner;
     private EditText zipField;
     private EditText addressField;
     private EditText cityField;
-    private EditText boroughField;
+    //private EditText boroughField;
+    private Spinner boroughSpinner;
     private EditText latitudeField;
     private EditText longitudeField;
     private static final String TAG = "ReportActivity";
@@ -51,12 +58,28 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report);
 
         cityField = (EditText) findViewById(R.id.city_text);
-        //createdDateField = (EditText) findViewById(R.id.city_text);
+        createdDateField = (EditText) findViewById(R.id.createDate_text);
         addressField = (EditText) findViewById(R.id.address_text);
         latitudeField = (EditText) findViewById(R.id.latitude_text);
         longitudeField = (EditText) findViewById(R.id.longitude_text);
         zipField = (EditText) findViewById(R.id.zip_text);
+        locationTypeSpinner = (Spinner) findViewById(R.id.locationType_Spinner);
+        boroughSpinner = (Spinner) findViewById(R.id.borough_Spinner);
         //boroughField = (EditText) findViewById(R.id.borough_Spinner);
+
+        /*
+         * Set up adapter to display the allowable location types in the spinner
+         */
+        ArrayAdapter<String> locationType_adapter = new ArrayAdapter(this, R.layout.spinner_item, LocationType.values());
+        locationType_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationTypeSpinner.setAdapter(locationType_adapter);
+
+        /*
+         * Set up adapter to display the allowable boroughs in the spinner
+         */
+        ArrayAdapter<String> borough_adapter = new ArrayAdapter(this, R.layout.spinner_item, Borough.values());
+        borough_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        boroughSpinner.setAdapter(borough_adapter);
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -75,11 +98,14 @@ public class ReportActivity extends AppCompatActivity {
         cityField.setError(null);
         //passwordField.setError(null);
 
+        final String date = createdDateField.getText().toString();
         final String city = cityField.getText().toString();
         final String address = addressField.getText().toString();
         final String latitude = latitudeField.getText().toString();
         final String longitude = longitudeField.getText().toString();
         final String zip = zipField.getText().toString();
+        final String loctype = locationTypeSpinner.getSelectedItem().toString();
+        final String borough = boroughSpinner.getSelectedItem().toString();
         final Long zip2 = Long.parseLong(zip);
         final Double latitude2 = Double.parseDouble(latitude);
         final Double longitude2 = Double.parseDouble(longitude);
@@ -91,15 +117,15 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String childrenCount = Long.toString(dataSnapshot.getChildrenCount());
+                mDatabase.child("Sightings").child(childrenCount).child("Created Date").setValue(date);
                 mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
                 mDatabase.child("Sightings").child(childrenCount).child("Incident Address").setValue(address);
                 mDatabase.child("Sightings").child(childrenCount).child("Incident Zip").setValue(zip2);
+                mDatabase.child("Sightings").child(childrenCount).child("Location Type").setValue(loctype);
+                mDatabase.child("Sightings").child(childrenCount).child("Borough").setValue(borough);
                 Log.d(TAG, latitude2.getClass().toString());
                 mDatabase.child("Sightings").child(childrenCount).child("Latitude").setValue(latitude2);
                 mDatabase.child("Sightings").child(childrenCount).child("Longitude").setValue(longitude2);
-//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
-//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
-//                mDatabase.child("Sightings").child(childrenCount).child("City").setValue(city);
                 String key = dataSnapshot.getKey();
 
                 //sighting.getCity() = city input

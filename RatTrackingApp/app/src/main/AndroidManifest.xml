@@ -24,8 +24,15 @@
         <activity android:name=".Controller.LaunchActivity"/>
         <activity android:name=".Controller.DataActivity"/>
         <activity android:name=".Controller.DetailActivity"/>
+        <activity android:name=".Controller.MapsActivity"/>
+        <activity android:name=".Controller.SearchDataActivity"/>
+        <activity android:name=".Controller.SearchDateActivity"/>
         <activity android:name=".Controller.ReportActivity">
         </activity>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCnt4sqbG5W1KAxxV_P7kiIhw8sCm_M01Q"/>
     </application>
 
 </manifest>
