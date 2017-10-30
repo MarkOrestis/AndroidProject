@@ -8,16 +8,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import team42.cs2340.rattrackingapp.Model.Month;
 import team42.cs2340.rattrackingapp.R;
-import team42.cs2340.rattrackingapp.Model.Admin;
-import team42.cs2340.rattrackingapp.Model.Borough;
-import team42.cs2340.rattrackingapp.Model.LocationType;
-import team42.cs2340.rattrackingapp.Model.Model;
-import team42.cs2340.rattrackingapp.Model.Rat;
-import team42.cs2340.rattrackingapp.Model.RatSightingData;
-import team42.cs2340.rattrackingapp.Model.User;
-import team42.cs2340.rattrackingapp.R;
-import android.content.Context;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.support.v4.app.DialogFragment;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+
+import com.google.android.gms.maps.model.Marker;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Beatrice on 10/25/17.
@@ -45,4 +49,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
+
+    public void filterDataByDate() {
+        // IMPLEMENT FILTERING STUFF HERE!!!!
+    }
+
 }

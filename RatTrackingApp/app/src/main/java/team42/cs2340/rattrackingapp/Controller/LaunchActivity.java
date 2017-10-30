@@ -67,6 +67,14 @@ public class LaunchActivity extends Activity {
             }
         });
 
+        Button searchDataButton = (Button) findViewById(R.id.searchButton);
+        searchDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToSearchData();
+            }
+        });
+
         try {
             //Get input stream and Buffered Reader for our data file.
             InputStream is = getApplicationContext().getAssets().open("RatSighting.csv");
@@ -106,6 +114,11 @@ public class LaunchActivity extends Activity {
 
     public void goToMaps() {
         Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToSearchData() {
+        Intent intent = new Intent(this, SearchDataActivity.class);
         startActivity(intent);
     }
 
