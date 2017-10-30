@@ -49,6 +49,7 @@ public class AddratActivity extends Activity {
     private EditText latitudeField;
     private EditText longitudeField;
 
+    private EditText dayField;
     private Spinner monthSpinner;
     private Spinner yearSpinner;
     private Spinner boroughSpinner;
@@ -70,6 +71,7 @@ public class AddratActivity extends Activity {
         uniqueKeyField = (EditText) findViewById(R.id.uniqueKey_text);
         //createdDateField = (EditText) findViewById(R.id.createDate_text);
         //locationTypeField = (EditText) findViewById(R.id.locationType_text);
+        dayField = (EditText) findViewById(R.id.day_text);
         monthSpinner = (Spinner) findViewById(R.id.month_Spinner);
         yearSpinner = (Spinner) findViewById(R.id.year_Spinner);
         locationTypeSpinner = (Spinner) findViewById(R.id.locationType_Spinner);
@@ -127,7 +129,7 @@ public class AddratActivity extends Activity {
             public void onClick(View v) {
 
                 ratatat = new RatSightingData(uniqueKeyField.getText().toString(),
-                        monthSpinner.getSelectedItem().toString() + yearSpinner.getSelectedItem().toString(),
+                        dayField.getText().toString() + "/" + monthSpinner.getSelectedItem().toString() + "/" + yearSpinner.getSelectedItem().toString(),
                         locationTypeSpinner.getSelectedItem().toString(),zipField.getText().toString(),
                         addressField.getText().toString(), cityField.getText().toString(),
                         boroughSpinner.getSelectedItem().toString(), latitudeField.getText().toString(),

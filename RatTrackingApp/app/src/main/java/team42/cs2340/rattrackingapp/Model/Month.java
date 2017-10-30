@@ -1,6 +1,5 @@
 package team42.cs2340.rattrackingapp.Model;
 
-
 /**
  * Created by beatrice on 10/20/17.
  */
