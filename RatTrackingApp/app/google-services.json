@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "953060175016-j64jgc36d2au5mhrtgfu8mg6qcotinru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team42.cs2340.rattrackingapp",
+            "certificate_hash": "0fda85406f68a591099868d175e020f18a6f5cd3"
+          }
+        },
+        {
           "client_id": "953060175016-oj0v99fs8040qg7l69v5qgj4ki22ske1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

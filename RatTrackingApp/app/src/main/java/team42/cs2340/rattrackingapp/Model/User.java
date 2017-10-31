@@ -1,7 +1,7 @@
 package team42.cs2340.rattrackingapp.Model;
 
 /**
- * Created by thoma on 10/9/2017.
+ * Created by Orestis on 10/9/2017.
  */
 
 public class User {

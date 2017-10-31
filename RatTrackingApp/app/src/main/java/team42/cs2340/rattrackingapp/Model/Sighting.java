@@ -3,7 +3,7 @@ package team42.cs2340.rattrackingapp.Model;
 import java.sql.Timestamp;
 
 /**
- * Created by thoma on 10/9/2017.
+ * Created by Orestis on 10/9/2017.
  */
 
 public class Sighting {
