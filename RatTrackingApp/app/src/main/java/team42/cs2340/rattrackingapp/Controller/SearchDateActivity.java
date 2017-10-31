@@ -12,7 +12,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import team42.cs2340.rattrackingapp.Model.Month;
+import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.R;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,9 +24,16 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import com.google.android.gms.maps.model.Marker;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Beatrice on 10/30/17.
@@ -35,9 +45,21 @@ public class SearchDateActivity extends Activity {
     private Spinner monthSpinner2;
     private Spinner yearSpinner2;
 
-
+    public Spinner getMonthSpinner() {
+        return monthSpinner;
+    }
+    public Spinner getYearSpinner() {
+        return yearSpinner;
+    }
+    public  Spinner getMonthSpinner2() {
+        return monthSpinner2;
+    }
+    public Spinner getYearSpinner2() {
+        return yearSpinner2;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchdate);
 
@@ -45,6 +67,12 @@ public class SearchDateActivity extends Activity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String monthStart = monthSpinner.getSelectedItem().toString();
+                String yearStart = yearSpinner.getSelectedItem().toString();
+                String monthEnd = monthSpinner2.getSelectedItem().toString();
+                String yearEnd = yearSpinner2.getSelectedItem().toString();
+                FilterData filterdata = new FilterData();
+                filterdata.filter(monthStart, monthEnd, yearStart, yearEnd);
                 goToDateMaps();
             }
         });
@@ -53,6 +81,7 @@ public class SearchDateActivity extends Activity {
         yearSpinner = (Spinner) findViewById(R.id.searchyear_Spinner);
         monthSpinner2 = (Spinner) findViewById(R.id.searchmonth_Spinner2);
         yearSpinner2 = (Spinner) findViewById(R.id.searchyear_Spinner2);
+
 
         /*
          * Set up adapter to display the allowable months in the spinner
@@ -66,7 +95,7 @@ public class SearchDateActivity extends Activity {
          */
         ArrayList<String> years = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 1950; i <= thisYear; i++) {
+        for (int i = 2015; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
         ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, years);

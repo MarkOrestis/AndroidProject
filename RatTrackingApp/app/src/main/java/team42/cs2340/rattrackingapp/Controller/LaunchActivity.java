@@ -51,14 +51,14 @@ public class LaunchActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                mDatabase.child(dataSnapshot.getKey());
-
-                String key = dataSnapshot.getKey();
-
-                String date = (String) dataSnapshot.child("Created Date").getValue();
-                //Log.d(TAG, "checking:" + date);
-                sightingArrayList.add(new Sighting(key, date));
-                Log.d(TAG,"checking" + sightingArrayList.toString());
+//                mDatabase.child(dataSnapshot.getKey());
+//
+//                String key = dataSnapshot.getKey();
+//
+//                String date = (String) dataSnapshot.child("Created Date").getValue();
+//                //Log.d(TAG, "checking:" + date);
+//                sightingArrayList.add(new Sighting(key, date));
+//                Log.d(TAG,"checking" + sightingArrayList.toString());
             }
 
             @Override
