@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int startMonth = 1;
     private int startYear = 2010;
     private String endMonth = "1";
-    private String endYear = "2017  ";
+    private String endYear = "2017";
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
@@ -75,19 +75,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-//        String adder = "" + startMonth + startYear;
+        String adder = "" + startMonth + startYear;
+        Log.d("BEATRICE", adder);
+//        startMonth++;
+//        startYear++;
+//        adder = "" + startMonth + startYear;
 //        Log.d("BEATRICE", adder);
-//        do {
-//            Log.d("BEATRICE", "HEY" + startMonth + startYear);
-//            adder = "" + startMonth + startYear;
-//            elDate.add(adder);
-//            if(startMonth != 12) {
-//                startMonth++;
-//            } else {
-//                startMonth = 1;
-//                startYear++;
-//            }
-//        } while(!adder.equals(endMonth + endYear));
+        do {
+            Log.d("BEATRICE", "HEY" + startMonth + startYear);
+            adder = "" + startMonth + startYear;
+            elDate.add(adder);
+            if(startMonth != 12) {
+                startMonth++;
+            } else {
+                startMonth = 1;
+                startYear++;
+            }
+        } while(!adder.equals(endMonth + endYear));
         mDatabase = FirebaseDatabase.getInstance().getReference("Sightings");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -194,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String third = butt.nextToken().substring(0,4);
                 Log.d("TESTING", "HEY" + first + third);
                 String time = first + third;
-                elDate.add("92015");
+//                elDate.add("92015");
                 double lat = Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString());
                 double lon = Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString());
 //                String date = dataSnapshot.child()/
