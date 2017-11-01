@@ -54,10 +54,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // variables to help with map filtering
     // USE THESE VARIABLES, J! :)
     // YAY.
-    private int startMonth;
-    private int startYear;
-    private String endMonth;
-    private String endYear;
+    private int startMonth = 1;
+    private int startYear = 2010;
+    private String endMonth = "1";
+    private String endYear = "2017  ";
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
@@ -75,7 +75,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-//        String adder = "";
+//        String adder = "" + startMonth + startYear;
+//        Log.d("BEATRICE", adder);
 //        do {
 //            Log.d("BEATRICE", "HEY" + startMonth + startYear);
 //            adder = "" + startMonth + startYear;
@@ -177,6 +178,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+
         mMap = googleMap;
         // Add a marker in nyc, Australia, and move the camera.
         final LatLng nyc = new LatLng(40.7128, -74.0060);
@@ -197,8 +199,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double lon = Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString());
 //                String date = dataSnapshot.child()/
                 for (String datey : elDate) {
-                    if((dataSnapshot.child("Created Date").getValue().toString().substring(0,1)
-                            + dataSnapshot.child("Created Date").getValue().toString().substring(4,8)).equals(datey)) {
+                    if(time.equals(datey)) {
                         LatLng mark = new LatLng(lat, lon);
                         String key = dataSnapshot.child("Unique Key").getValue().toString();
                         mMap.addMarker(new MarkerOptions().position(mark).title(key));
