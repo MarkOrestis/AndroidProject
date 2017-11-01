@@ -220,7 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 for (String datey : elDate) {
                     if(time.equals(datey)) {
                         LatLng mark = new LatLng(lat, lon);
-                        String key = dataSnapshot.child("Unique Key").getValue().toString();
+                        String key = dataSnapshot.getKey();
                         mMap.addMarker(new MarkerOptions().position(mark).title(key));
                     }
                 }
