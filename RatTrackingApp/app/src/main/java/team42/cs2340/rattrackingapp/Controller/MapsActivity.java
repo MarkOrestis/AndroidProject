@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import static android.content.ContentValues.TAG;
 
@@ -74,7 +75,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
+//        String adder = "";
+//        do {
+//            Log.d("BEATRICE", "HEY" + startMonth + startYear);
+//            adder = "" + startMonth + startYear;
+//            elDate.add(adder);
+//            if(startMonth != 12) {
+//                startMonth++;
+//            } else {
+//                startMonth = 1;
+//                startYear++;
+//            }
+//        } while(!adder.equals(endMonth + endYear));
         mDatabase = FirebaseDatabase.getInstance().getReference("Sightings");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -174,17 +186,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Log.d("TESTING", "HEY" + dataSnapshot.child("Created Date").getValue().toString());
-                elDate.add(dataSnapshot.child("Created Date").getValue().toString());
+                StringTokenizer butt = new StringTokenizer(dataSnapshot.child("Created Date").getValue().toString(), "/");
+                String first = butt.nextToken();
+                String second = butt.nextToken();
+                String third = butt.nextToken().substring(0,4);
+                Log.d("TESTING", "HEY" + first + third);
+                String time = first + third;
+                elDate.add("92015");
                 double lat = Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString());
                 double lon = Double.parseDouble(dataSnapshot.child("Longitude").getValue().toString());
-//                String date = dataSnapshot.child()
+//                String date = dataSnapshot.child()/
                 for (String datey : elDate) {
-                    if(dataSnapshot.child("Created Date").getValue().toString().equals("9/4/2015 0:00")) {
+                    if((dataSnapshot.child("Created Date").getValue().toString().substring(0,1)
+                            + dataSnapshot.child("Created Date").getValue().toString().substring(4,8)).equals(datey)) {
                         LatLng mark = new LatLng(lat, lon);
                         String key = dataSnapshot.child("Unique Key").getValue().toString();
                         mMap.addMarker(new MarkerOptions().position(mark).title(key));
                     }
                 }
+
 
 //                LatLng mark = new LatLng(lat, lon);
 //                String key = dataSnapshot.child("Unique Key").getValue().toString();
