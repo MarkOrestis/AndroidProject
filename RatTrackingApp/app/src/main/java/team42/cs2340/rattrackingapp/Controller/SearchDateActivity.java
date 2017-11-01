@@ -3,32 +3,14 @@ package team42.cs2340.rattrackingapp.Controller;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import team42.cs2340.rattrackingapp.Model.Month;
 import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.R;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
 import android.widget.Spinner;
-
-import com.google.android.gms.maps.model.Marker;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +26,12 @@ public class SearchDateActivity extends Activity {
     private Spinner yearSpinner;
     private Spinner monthSpinner2;
     private Spinner yearSpinner2;
+
+    // variables to help with map filtering
+    private int startMonth;
+    private int startYear;
+    private String endMonth;
+    private String endYear;
 
     public Spinner getMonthSpinner() {
         return monthSpinner;
@@ -67,12 +55,64 @@ public class SearchDateActivity extends Activity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String monthStart = monthSpinner.getSelectedItem().toString();
-                String yearStart = yearSpinner.getSelectedItem().toString();
-                String monthEnd = monthSpinner2.getSelectedItem().toString();
-                String yearEnd = yearSpinner2.getSelectedItem().toString();
-                FilterData filterdata = new FilterData();
-                filterdata.filter(monthStart, monthEnd, yearStart, yearEnd);
+                String startmonthString = monthSpinner.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (startmonthString) {
+                    case "January": startMonth = 1;
+                        break;
+                    case "February": startMonth = 2;
+                        break;
+                    case "March": startMonth = 3;
+                        break;
+                    case "April": startMonth = 4;
+                        break;
+                    case "May": startMonth = 5;
+                        break;
+                    case "June": startMonth = 6;
+                        break;
+                    case "July": startMonth = 7;
+                        break;
+                    case "August": startMonth = 8;
+                        break;
+                    case "September": startMonth = 9;
+                        break;
+                    case "October": startMonth = 10;
+                        break;
+                    case "November": startMonth = 11;
+                        break;
+                    case "December": startMonth = 12;
+                        break;
+                }
+                startYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                String endmonthString = monthSpinner2.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (endmonthString) {
+                    case "January": endMonth = "1";
+                        break;
+                    case "February": endMonth = "2";
+                        break;
+                    case "March": endMonth = "3";
+                        break;
+                    case "April": endMonth = "4";
+                        break;
+                    case "May": endMonth = "5";
+                        break;
+                    case "June": endMonth = "6";
+                        break;
+                    case "July": endMonth = "7";
+                        break;
+                    case "August": endMonth = "8";
+                        break;
+                    case "September": endMonth = "9";
+                        break;
+                    case "October": endMonth = "10";
+                        break;
+                    case "November": endMonth = "11";
+                        break;
+                    case "December": endMonth = "12";
+                        break;
+                }
+                endYear = yearSpinner2.getSelectedItem().toString();
                 goToDateMaps();
             }
         });
@@ -95,7 +135,7 @@ public class SearchDateActivity extends Activity {
          */
         ArrayList<String> years = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 2015; i <= thisYear; i++) {
+        for (int i = 2010; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
         ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, years);

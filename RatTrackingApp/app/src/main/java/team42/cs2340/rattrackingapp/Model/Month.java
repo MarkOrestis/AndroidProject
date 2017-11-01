@@ -5,22 +5,23 @@ package team42.cs2340.rattrackingapp.Model;
  */
 
 public enum Month {
-    JANUARY ("January"),
-    FEBRUARY ("February"),
-    MARCH ("March"),
-    APRIL ("April"),
-    MAY ("May"),
-    JUNE ("June"),
-    JULY ("July"),
-    AUGUST ("August"),
-    SEPTEMBER ("September"),
-    OCTOBER ("October"),
-    NOVEMBER ("November"),
-    DECEMBER ("December");
+    JANUARY ("January", 1),
+    FEBRUARY ("February", 2),
+    MARCH ("March", 3),
+    APRIL ("April", 4),
+    MAY ("May", 5),
+    JUNE ("June", 6),
+    JULY ("July", 7),
+    AUGUST ("August", 8),
+    SEPTEMBER ("September", 9),
+    OCTOBER ("October", 10),
+    NOVEMBER ("November", 11),
+    DECEMBER ("December", 12);
 
 
     /** the full string representation of the borough name */
     private final String month;
+    private final int number;
 
 
     /**
@@ -28,8 +29,9 @@ public enum Month {
      *
      * @param month   full name of the course
      */
-    Month(String month) {
+    Month(String month, int number) {
         this.month = month;
+        this.number = number;
     }
 
 
@@ -38,4 +40,6 @@ public enum Month {
      * @return the display string representation of the course
      */
     public String toString() { return month; }
+
+    public int getMonth() { return number; }
 }

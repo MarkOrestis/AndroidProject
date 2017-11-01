@@ -20,8 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.support.v4.app.DialogFragment;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import com.google.android.gms.maps.model.Marker;
@@ -46,6 +44,19 @@ import static android.content.ContentValues.TAG;
  */
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
+    private Spinner monthSpinner;
+    private Spinner yearSpinner;
+    private Spinner monthSpinner2;
+    private Spinner yearSpinner2;
+
+    // variables to help with map filtering
+    // USE THESE VARIABLES, J! :)
+    // YAY.
+    private int startMonth;
+    private int startYear;
+    private String endMonth;
+    private String endYear;
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
@@ -84,6 +95,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // ...
             }
         };
+
+        Button search = (Button) findViewById(R.id.confirmsearchdate);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String startmonthString = monthSpinner.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (startmonthString) {
+                    case "January": startMonth = 1;
+                        break;
+                    case "February": startMonth = 2;
+                        break;
+                    case "March": startMonth = 3;
+                        break;
+                    case "April": startMonth = 4;
+                        break;
+                    case "May": startMonth = 5;
+                        break;
+                    case "June": startMonth = 6;
+                        break;
+                    case "July": startMonth = 7;
+                        break;
+                    case "August": startMonth = 8;
+                        break;
+                    case "September": startMonth = 9;
+                        break;
+                    case "October": startMonth = 10;
+                        break;
+                    case "November": startMonth = 11;
+                        break;
+                    case "December": startMonth = 12;
+                        break;
+                }
+                startYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                String endmonthString = monthSpinner2.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (endmonthString) {
+                    case "January": endMonth = "1";
+                        break;
+                    case "February": endMonth = "2";
+                        break;
+                    case "March": endMonth = "3";
+                        break;
+                    case "April": endMonth = "4";
+                        break;
+                    case "May": endMonth = "5";
+                        break;
+                    case "June": endMonth = "6";
+                        break;
+                    case "July": endMonth = "7";
+                        break;
+                    case "August": endMonth = "8";
+                        break;
+                    case "September": endMonth = "9";
+                        break;
+                    case "October": endMonth = "10";
+                        break;
+                    case "November": endMonth = "11";
+                        break;
+                    case "December": endMonth = "12";
+                        break;
+                }
+                endYear = yearSpinner2.getSelectedItem().toString();
+            }
+        });
 
     }
 
@@ -146,119 +222,45 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-    }
+        monthSpinner = (Spinner) findViewById(R.id.searchmonth_Spinner);
+        yearSpinner = (Spinner) findViewById(R.id.searchyear_Spinner);
+        monthSpinner2 = (Spinner) findViewById(R.id.searchmonth_Spinner2);
+        yearSpinner2 = (Spinner) findViewById(R.id.searchyear_Spinner2);
 
-    public void filter(String monthStart, String monthEnd, String yearStart, String yearEnd) {
-        if (monthStart.equals("January")) {
-            monthStart = "1";
-        } else if (monthStart.equals("February")) {
-            monthStart = "2";
-        }   else if (monthStart.equals("March")) {
-            monthStart = "3";
-        }   else if (monthStart.equals("April")) {
-            monthStart = "4";
-        }   else if (monthStart.equals("May")) {
-            monthStart = "5";
-        }   else if (monthStart.equals("June")) {
-            monthStart = "6";
-        }   else if (monthStart.equals("July")) {
-            monthStart = "7";
-        }   else if (monthStart.equals("August")) {
-            monthStart = "8";
-        }   else if (monthStart.equals("September")) {
-            monthStart = "9";
-        }   else if (monthStart.equals("October")) {
-            monthStart = "10";
-        }   else if (monthStart.equals("November")) {
-            monthStart = "11";
-        }   else if (monthStart.equals("December")) {
-            monthStart = "12";
+
+    /*
+     * Set up adapter to display the allowable months in the spinner
+     */
+        ArrayAdapter<String> month_adapter = new ArrayAdapter(this, R.layout.spinner_item, Month.values());
+        month_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner.setAdapter(month_adapter);
+
+    /*
+     * Set up adapter to display the allowable years in the spinner
+     */
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2010; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
         }
-        if (monthEnd.equals("January")) {
-            monthEnd = "1";
-        } else if (monthEnd.equals("February")) {
-            monthEnd = "2";
-        }   else if (monthEnd.equals("March")) {
-            monthEnd = "3";
-        }   else if (monthEnd.equals("April")) {
-            monthEnd = "4";
-        }   else if (monthEnd.equals("May")) {
-            monthEnd = "5";
-        }   else if (monthEnd.equals("June")) {
-            monthEnd = "6";
-        }   else if (monthEnd.equals("July")) {
-            monthEnd = "7";
-        }   else if (monthEnd.equals("August")) {
-            monthEnd = "8";
-        }   else if (monthEnd.equals("September")) {
-            monthEnd = "9";
-        }   else if (monthEnd.equals("October")) {
-            monthEnd = "10";
-        }   else if (monthEnd.equals("November")) {
-            monthEnd = "11";
-        }   else if (monthEnd.equals("December")) {
-            monthEnd = "12";
-        }
-        final int startMonth = Integer.parseInt(monthStart);
-        final int endMonth = Integer.parseInt(monthEnd);
-        final int startYear = Integer.parseInt(yearStart);
-        final int endYear = Integer.parseInt(yearEnd);
+        ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, years);
+        year_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(year_adapter);
 
-        before = new Date(startYear, startMonth, 1);
-        after = new Date(endYear, endMonth, 1);
-        mDatabase = FirebaseDatabase.getInstance().getReference("Sightings");
-        mDatabase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                mDatabase.child(dataSnapshot.getKey());
-                String key = dataSnapshot.getKey();
-                String date = (String) dataSnapshot.child("Created Date").getValue();
-                String lattitude = "" + dataSnapshot.child("Latitude").getValue();
-                String longitude = "" + dataSnapshot.child("Longitude").getValue();
-                sightingArray.add(new Sighting(key, date, lattitude, longitude));
-                Log.d(TAG,"checking" + sightingArray.toString());
-                for (int i = 0; i < sightingArray.size(); i++) {
-                    String getDate = sightingArray.get(i).getDate();
-                    String[] dataArray = getDate.split("/");
-                    int month = Integer.parseInt(dataArray[0]);
-                    int day = Integer.parseInt(dataArray[1]);
-                    int year = Integer.parseInt(dataArray[2].substring(0,4));
-                    check = new Date(year, month, day);
-                    if (before.before(check) && after.after(check)) {
-                        filtered.add(sightingArray.get(i));
-                    }
-                    Log.d("chosenDateRange", "" + startMonth + "-" + endMonth + "/"+ startYear + "-" + endYear);
-                    Log.d("dateCheck", + month + "---" + year);
-                }
-                Log.d(TAG, "filtered" + filtered.toString());
-            }
+    /*
+     * Set up adapter to display the allowable months in the spinner
+     */
+        ArrayAdapter<String> month_adapter2 = new ArrayAdapter(this, R.layout.spinner_item, Month.values());
+        month_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner2.setAdapter(month_adapter2);
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+    /*
+     * Set up adapter to display the allowable years in the spinner
+     */
+        ArrayAdapter<String> year_adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, years);
+        year_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner2.setAdapter(year_adapter2);
 
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        //sightingArray.add(new Sighting("1", "9/4/2015"));
-        //Log.d(TAG,"sightings" + sightingArray.toString());
-        //Log.d(TAG, "sightings" + sightingArray.toString());
-
-        //Log.d(TAG, "filtered" + filtered.toString());
-        //return filtered;
     }
 
 }
