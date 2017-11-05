@@ -27,7 +27,8 @@
         <activity android:name=".Controller.MapsActivity"/>
         <activity android:name=".Controller.SearchDataActivity"/>
         <activity android:name=".Controller.SearchDateActivity"/>
-        <activity android:name=".Controller.ReportActivity">
+        <activity android:name=".Controller.ReportActivity"/>
+        <activity android:name=".Controller.GraphActivity">
         </activity>
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         <meta-data

@@ -39,7 +39,8 @@ public class SearchDataActivity extends Activity {
         graphByDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(this, GraphActivity.class));
+                startActivity(new Intent(SearchDataActivity.this,
+                        GraphActivity.class));
             }
         });
     }
