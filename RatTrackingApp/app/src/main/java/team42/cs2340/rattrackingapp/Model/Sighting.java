@@ -56,12 +56,17 @@ public class Sighting {
         this.longitude = Longitude;
     }
 
-    public Sighting(String uniquekey, String Date, String latitude, String longitude) {
+    public Sighting(String uniquekey, String date, String latitude, String longitude) {
         this();
         this.uniqueKey = uniquekey;
-        this.date = Date;
+        this.date = date;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+    public Sighting(String uniqueKey, String date) {
+        this();
+        this.uniqueKey = uniqueKey;
+        this.date = date;
     }
 
     /**

@@ -21,6 +21,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import team42.cs2340.rattrackingapp.Model.Sighting;
+import team42.cs2340.rattrackingapp.Model.SightingList;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -34,9 +35,7 @@ public class LaunchActivity extends AppCompatActivity {
     private Button addRat;
     private Button searchData;
     private Button viewMaps;
-    private ArrayList<Sighting> sightingArrayList = new ArrayList<>();
     private FirebaseAuth mAuth;
-    private DatabaseReference mDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LaunchActivity";
 
@@ -45,43 +44,8 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Sightings");
-
-        mDatabase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-//                mDatabase.child(dataSnapshot.getKey());
-//
-//                String key = dataSnapshot.getKey();
-//
-//                String date = (String) dataSnapshot.child("Created Date").getValue();
-//                //Log.d(TAG, "checking:" + date);
-//                sightingArrayList.add(new Sighting(key, date));
-//                Log.d(TAG,"checking" + sightingArrayList.toString());
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
+        SightingList sightingList = SightingList.getInstance();
+        
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
