@@ -56,8 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     // YAY.
     private int startMonth = 1;
     private int startYear = 2010;
-    private String endMonth = "10";
-    private String endYear = "2015";
+    private String endMonth = "12";
+    private String endYear = "2020";
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
