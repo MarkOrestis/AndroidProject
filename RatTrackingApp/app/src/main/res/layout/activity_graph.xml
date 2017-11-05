@@ -5,10 +5,10 @@
     android:background="#292929">
 
     <TextView
-        android:id="@+id/searchbydate"
+        android:id="@+id/graphbydate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SEARCH BY DATE"
+        android:text="GRAPH BY DATE"
         android:textSize="20dp"
         android:textColor="#d3d3d3"
         android:layout_alignParentLeft="true"
@@ -23,7 +23,7 @@
         android:textSize="20dp"
         android:textColor="#d3d3d3"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/searchbydate"
+        android:layout_below="@+id/graphbydate"
         android:layout_marginBottom="5dp"/>
 
     <Spinner
@@ -94,7 +94,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:layout_below="@id/searchyear_Spinner2Graph"
-        android:text="Graph"
+        android:text="Filter"
         android:background="#92cbc5"/>
 
     <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
