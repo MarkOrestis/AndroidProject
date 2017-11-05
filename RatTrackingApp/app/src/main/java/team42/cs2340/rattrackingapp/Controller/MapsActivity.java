@@ -61,7 +61,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "MapsActivity";
     private ArrayList<Sighting> filtered = new ArrayList<>();
     private ArrayList<Sighting> sightingArray = new ArrayList<>();
@@ -76,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         String adder = "" + startMonth + startYear;
-        Log.d("BEATRICE", adder);
+//        Log.d("BEATRICE", adder);
 //        startMonth++;
 //        startYear++;
 //        adder = "" + startMonth + startYear;
@@ -98,20 +97,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
 
         Button search = (Button) findViewById(R.id.confirmsearchdate);
         search.setOnClickListener(new View.OnClickListener() {
@@ -206,12 +191,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mDatabase.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("TESTING", "HEY" + dataSnapshot.child("Created Date").getValue().toString());
+//                Log.d("TESTING", "HEY" + dataSnapshot.child("Created Date").getValue().toString());
                 StringTokenizer butt = new StringTokenizer(dataSnapshot.child("Created Date").getValue().toString(), "/");
                 String first = butt.nextToken();
                 String second = butt.nextToken();
                 String third = butt.nextToken().substring(0,4);
-                Log.d("TESTING", "HEY" + first + third);
+//                Log.d("TESTING", "HEY" + first + third);
                 String time = first + third;
 //                elDate.add("92015");
                 double lat = Double.parseDouble(dataSnapshot.child("Latitude").getValue().toString());
