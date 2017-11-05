@@ -13,4 +13,14 @@
         android:text="Search by date range"
         android:background="#92cbc5"/>
 
+    <Button
+        android:id="@+id/graphbtn"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/searchdatebtn"
+        android:layout_alignStart="@+id/searchdatebtn"
+        android:layout_marginBottom="94dp"
+        android:background="#92cbc5"
+        android:text="Graph by date range" />
+
 </RelativeLayout>

@@ -24,7 +24,7 @@ public class SearchDataActivity extends Activity {
         setContentView(R.layout.activity_searchdata);
 
         searchByDateButton = (Button) findViewById(R.id.searchdatebtn);
-        graphByDateButton = (Button) findViewById(R.id.something);
+        graphByDateButton = (Button) findViewById(R.id.graphbtn);
 
 
         searchByDateButton.setOnClickListener(new View.OnClickListener() {
