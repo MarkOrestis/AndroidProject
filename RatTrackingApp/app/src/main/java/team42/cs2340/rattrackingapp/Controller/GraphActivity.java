@@ -2,6 +2,7 @@ package team42.cs2340.rattrackingapp.Controller;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -14,6 +15,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
+
+import team42.cs2340.rattrackingapp.Model.Sighting;
+import team42.cs2340.rattrackingapp.Model.SightingList;
 import team42.cs2340.rattrackingapp.R;
 
 import static android.content.ContentValues.TAG;
@@ -24,12 +28,24 @@ public class GraphActivity extends AppCompatActivity {
     ArrayList<String> dates;
     Random random;
     ArrayList<BarEntry> barEntries;
+    SightingList sightingList;
+    ArrayList<Sighting> sightingArrayList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
         barChart = (BarChart) findViewById(R.id.bargraph);
+
+        sightingList = SightingList.getInstance();
+        sightingArrayList = sightingList.getsightingList();
+        
+        int count = 0;
+        for (Sighting s: sightingArrayList) {
+            count++;
+            Log.d(TAG, "dates: " + s.getDate() + " count: " + count);
+        }
 
         createRandomBarGraph("2016/05/05", "2016/06/01");
 
@@ -72,7 +88,6 @@ public class GraphActivity extends AppCompatActivity {
         BarData barData = new BarData(dates,barDataSet);
         barChart.setData(barData);
         barChart.setDescription("My First Bar Graph!");
-
     }
 
     public ArrayList<String> getList(Calendar startDate, Calendar endDate){
@@ -95,5 +110,7 @@ public class GraphActivity extends AppCompatActivity {
         }
         return curDate;
     }
+
+
 
 }
