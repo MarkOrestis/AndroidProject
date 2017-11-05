@@ -1,10 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292929">
 
+    <TextView
+        android:id="@+id/searchbydate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEARCH BY DATE"
+        android:textSize="20dp"
+        android:textColor="#d3d3d3"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/searchdata"
+        android:layout_marginBottom="5dp"/>
+
+    <TextView
+        android:id="@+id/begindate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start date:"
+        android:textSize="20dp"
+        android:textColor="#d3d3d3"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/searchbydate"
+        android:layout_marginBottom="5dp"/>
+
+    <Spinner
+        android:id="@+id/searchmonth_SpinnerGraph"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:popupTheme="@android:style/ThemeOverlay.Material.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHint="#d3d3d3"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/begindate"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/searchyear_SpinnerGraph"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:popupTheme="@android:style/ThemeOverlay.Material.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHint="#d3d3d3"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@id/begindate"
+        android:layout_toRightOf="@+id/searchmonth_SpinnerGraph" />
+
+    <TextView
+        android:id="@+id/enddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End date:"
+        android:textSize="20dp"
+        android:textColor="#d3d3d3"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/searchyear_SpinnerGraph"
+        android:layout_marginBottom="5dp"/>
+
+    <Spinner
+        android:id="@+id/searchmonth_Spinner2Graph"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:popupTheme="@android:style/ThemeOverlay.Material.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHint="#d3d3d3"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@+id/enddate" />
+
+    <Spinner
+        android:id="@+id/searchyear_Spinner2Graph"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:popupTheme="@android:style/ThemeOverlay.Material.Dark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:ems="10"
+        android:inputType="text"
+        android:textColorHint="#d3d3d3"
+        android:textColor = "#d3d3d3"
+        android:layout_below="@id/enddate"
+        android:layout_toRightOf="@+id/searchmonth_Spinner2Graph" />
+
+    <Button
+        android:id="@+id/confirmgraphdate"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/searchyear_Spinner2Graph"
+        android:text="Graph"
+        android:background="#92cbc5"/>
+
+    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/confirmsearchdate"-->
+        <!--android:id="@+id/map"-->
+        <!--tools:context=".MapsActivity"-->
+        <!--android:name="com.google.android.gms.maps.SupportMapFragment" />-->
     <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bargraph"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:id="@+id/bargraph"></com.github.mikephil.charting.charts.BarChart>
-</android.support.constraint.ConstraintLayout>
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/confirmsearchdate"></com.github.mikephil.charting.charts.BarChart>
+
+</RelativeLayout>
+
+

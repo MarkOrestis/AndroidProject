@@ -3,6 +3,8 @@ package team42.cs2340.rattrackingapp.Controller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
@@ -16,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+import team42.cs2340.rattrackingapp.Model.Month;
 import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.Model.SightingList;
 import team42.cs2340.rattrackingapp.R;
@@ -23,6 +26,11 @@ import team42.cs2340.rattrackingapp.R;
 import static android.content.ContentValues.TAG;
 
 public class GraphActivity extends AppCompatActivity {
+
+    private Spinner monthSpinner;
+    private Spinner monthSpinner2;
+    private Spinner yearSpinner;
+    private Spinner yearSpinner2;
 
     BarChart barChart;
     ArrayList<String> dates;
@@ -40,20 +48,21 @@ public class GraphActivity extends AppCompatActivity {
 
         sightingList = SightingList.getInstance();
         sightingArrayList = sightingList.getsightingList();
-        
+
         int count = 0;
         for (Sighting s: sightingArrayList) {
             count++;
             Log.d(TAG, "dates: " + s.getDate() + " count: " + count);
         }
 
-        createRandomBarGraph("2016/05/05", "2016/06/01");
+        createRandomBarGraph("2015/05/05", "2016/05/05");
 
     }
 
     public void createRandomBarGraph(String Date1, String Date2){
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        populateSpinner();
 
         try {
             Date date1 = simpleDateFormat.parse(Date1);
@@ -111,6 +120,47 @@ public class GraphActivity extends AppCompatActivity {
         return curDate;
     }
 
+    public void populateSpinner() {
+        monthSpinner = (Spinner) findViewById(R.id.searchmonth_SpinnerGraph);
+        yearSpinner = (Spinner) findViewById(R.id.searchyear_SpinnerGraph);
+        monthSpinner2 = (Spinner) findViewById(R.id.searchmonth_Spinner2Graph);
+        yearSpinner2 = (Spinner) findViewById(R.id.searchyear_Spinner2Graph);
+
+
+    /*
+     * Set up adapter to display the allowable months in the spinner
+     */
+        ArrayAdapter<String> month_adapter = new ArrayAdapter(this, R.layout.spinner_item, Month.values());
+        month_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner.setAdapter(month_adapter);
+
+    /*
+     * Set up adapter to display the allowable years in the spinner
+     */
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        for (int i = 2010; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> year_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, years);
+        year_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(year_adapter);
+
+    /*
+     * Set up adapter to display the allowable months in the spinner
+     */
+        ArrayAdapter<String> month_adapter2 = new ArrayAdapter(this, R.layout.spinner_item, Month.values());
+        month_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        monthSpinner2.setAdapter(month_adapter2);
+
+    /*
+     * Set up adapter to display the allowable years in the spinner
+     */
+        ArrayAdapter<String> year_adapter2 = new ArrayAdapter<String>(this, R.layout.spinner_item, years);
+        year_adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner2.setAdapter(year_adapter2);
+
+    }
 
 
 }
