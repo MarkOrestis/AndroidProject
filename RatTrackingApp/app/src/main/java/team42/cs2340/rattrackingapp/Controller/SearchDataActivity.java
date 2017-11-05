@@ -16,24 +16,31 @@ import static android.content.ContentValues.TAG;
  */
 
 public class SearchDataActivity extends Activity {
+    private Button searchByDateButton;
+    private Button graphByDateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchdata);
 
-        Button searchByDateButton = (Button) findViewById(R.id.searchdatebtn);
+        searchByDateButton = (Button) findViewById(R.id.searchdatebtn);
+        graphByDateButton = (Button) findViewById(R.id.something);
+
 
         searchByDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "onClick: Pressed");
-                goToSearchDateScreen();
+                startActivity(new Intent(SearchDataActivity.this
+                        , SearchDateActivity.class));
             }
         });
-    }
 
-    public void goToSearchDateScreen() {
-        Intent intent = new Intent(this, SearchDateActivity.class);
-        startActivity(intent);
+        graphByDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(this, GraphActivity.class));
+            }
+        });
     }
 }
