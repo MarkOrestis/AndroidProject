@@ -3,7 +3,9 @@ package team42.cs2340.rattrackingapp.Controller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -16,7 +18,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 import team42.cs2340.rattrackingapp.Model.Month;
 import team42.cs2340.rattrackingapp.Model.Sighting;
@@ -32,69 +36,192 @@ public class GraphActivity extends AppCompatActivity {
     private Spinner yearSpinner;
     private Spinner yearSpinner2;
 
+    HashMap<Integer, Integer> elDataMap;
     BarChart barChart;
     ArrayList<String> dates;
     Random random;
     ArrayList<BarEntry> barEntries;
     SightingList sightingList;
     ArrayList<Sighting> sightingArrayList;
+    ArrayList<String> elDate;
+    int startMonth = 9;
+    int startYear = 2015;
+    String endMonth = "9";
+    String endYear = "2015";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
-
+        elDataMap = new HashMap<>();
         barChart = (BarChart) findViewById(R.id.bargraph);
 
         sightingList = SightingList.getInstance();
         sightingArrayList = sightingList.getsightingList();
 
-        int count = 0;
-        for (Sighting s: sightingArrayList) {
-            count++;
-            Log.d(TAG, "dates: " + s.getDate() + " count: " + count);
-        }
+        elDate = new ArrayList<>();
+        String adder;
+        do {
+            Log.d("BEATRICE", "HEY" + startMonth + startYear);
+            adder = "" + startMonth + startYear;
+            if (!elDataMap.containsKey(adder.hashCode())) {
+                elDataMap.put(adder.hashCode(), 0);
+            }
+            elDate.add(adder);
+            if(startMonth != 12) {
+                startMonth++;
+            } else {
+                startMonth = 1;
+                startYear++;
+            }
+        } while(!adder.equals(endMonth + endYear));
 
-        createRandomBarGraph("2015/05/05", "2016/05/05");
+        createRandomBarGraph();
 
+        Button search = (Button) findViewById(R.id.confirmgraphdate);
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String startmonthString = monthSpinner.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (startmonthString) {
+                    case "January": startMonth = 1;
+                        break;
+                    case "February": startMonth = 2;
+                        break;
+                    case "March": startMonth = 3;
+                        break;
+                    case "April": startMonth = 4;
+                        break;
+                    case "May": startMonth = 5;
+                        break;
+                    case "June": startMonth = 6;
+                        break;
+                    case "July": startMonth = 7;
+                        break;
+                    case "August": startMonth = 8;
+                        break;
+                    case "September": startMonth = 9;
+                        break;
+                    case "October": startMonth = 10;
+                        break;
+                    case "November": startMonth = 11;
+                        break;
+                    case "December": startMonth = 12;
+                        break;
+                }
+                startYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
+                String endmonthString = monthSpinner2.getSelectedItem().toString();
+                // CONVERTING STRING MONTHS TO INTS HERE:
+                switch (endmonthString) {
+                    case "January": endMonth = "1";
+                        break;
+                    case "February": endMonth = "2";
+                        break;
+                    case "March": endMonth = "3";
+                        break;
+                    case "April": endMonth = "4";
+                        break;
+                    case "May": endMonth = "5";
+                        break;
+                    case "June": endMonth = "6";
+                        break;
+                    case "July": endMonth = "7";
+                        break;
+                    case "August": endMonth = "8";
+                        break;
+                    case "September": endMonth = "9";
+                        break;
+                    case "October": endMonth = "10";
+                        break;
+                    case "November": endMonth = "11";
+                        break;
+                    case "December": endMonth = "12";
+                        break;
+                }
+                endYear = yearSpinner2.getSelectedItem().toString();
+                elDate = new ArrayList<>();
+                elDataMap = new HashMap<>();
+                barChart.clear();
+                String adder;
+                do {
+//                    Log.d("BEATRICE", "HEY" + startMonth + startYear);
+                    adder = "" + startMonth + startYear;
+                    Log.d("BEATRICE", adder);
+                    elDate.add(adder);
+                    elDataMap.put(adder.hashCode(), 0);
+                    if(startMonth != 12) {
+                        startMonth++;
+                    } else {
+                        startMonth = 1;
+                        startYear++;
+                    }
+                } while(!adder.equals(endMonth + endYear));
+            createRandomBarGraph();
+            }
+        });
     }
 
-    public void createRandomBarGraph(String Date1, String Date2){
+    public void createRandomBarGraph(){
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         populateSpinner();
 
         try {
-            Date date1 = simpleDateFormat.parse(Date1);
-            Date date2 = simpleDateFormat.parse(Date2);
+//            Date date1 = simpleDateFormat.parse(Date1);
+//            Date date2 = simpleDateFormat.parse(Date2);
 
-            Calendar mDate1 = Calendar.getInstance();
-            Calendar mDate2 = Calendar.getInstance();
-            mDate1.clear();
-            mDate2.clear();
+//            Calendar mDate1 = Calendar.getInstance();
+//            Calendar mDate2 = Calendar.getInstance();
+//            mDate1.clear();
+//            mDate2.clear();
+//
+//            mDate1.setTime(date1);
+//            mDate2.setTime(date2);
 
-            mDate1.setTime(date1);
-            mDate2.setTime(date2);
-
-            dates = new ArrayList<>();
-            dates = getList(mDate1,mDate2);
+//            dates = new ArrayList<>();
+//            dates = getList(mDate1,mDate2);
 
             barEntries = new ArrayList<>();
             float max = 0f;
             float value = 0f;
             random = new Random();
-            for(int j = 0; j< dates.size();j++){
-                max = 100f;
-                value = random.nextFloat()*max;
-                barEntries.add(new BarEntry(value,j));
-            }
 
-        }catch(ParseException e){
+            for (Sighting sighting : sightingArrayList) {
+//                Log.d("JTest", sighting.getDate().toString());
+                StringTokenizer tokens = new StringTokenizer(sighting.getDate().toString(), "/");
+                String first = tokens.nextToken();
+                String second = tokens.nextToken();
+                String third = tokens.nextToken().substring(0,4);
+                Log.d("JTest", first + third);
+                Integer key = (first + third).hashCode();
+                if (elDataMap.containsKey(key)) {
+                    int replace = elDataMap.get(key);
+                    elDataMap.put(key, ++replace);
+                }
+            }
+            int i = 0;
+            for (String date : elDate) {
+                if (elDataMap.containsKey(date.hashCode())) {
+                    int placement = elDataMap.get(date.hashCode());
+                    barEntries.add(new BarEntry(placement, i++));
+                }
+            }
+//            for(int j = 0; j< elDate.size();j++){
+//
+////                max = 100f;
+////                value = random.nextFloat()*max;
+//                barEntries.add(new BarEntry(value,j));
+//            }
+
+
+
+        }catch(Exception e){
             e.printStackTrace();
         }
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Dates");
-        BarData barData = new BarData(dates,barDataSet);
+        BarData barData = new BarData(elDate,barDataSet);
         barChart.setData(barData);
         barChart.setDescription("My First Bar Graph!");
     }
