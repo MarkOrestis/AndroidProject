@@ -33,7 +33,6 @@ public class Sighting {
 
     /**
      * constructor with string inputs
-     * @param Unique_Key
      * @param Date
      * @param Location_Type
      * @param Incident_Zip
@@ -43,9 +42,8 @@ public class Sighting {
      * @param Latitude
      * @param Longitude
      */
-    public Sighting(String Unique_Key,String Date, String Location_Type,String Incident_Zip,String Incident_Address,
+    public Sighting(String Date, String Location_Type,String Incident_Zip,String Incident_Address,
                     String City,String Borough,String Latitude,String Longitude) {
-        this.uniqueKey = Unique_Key;
         this.date = Date;
         this.locationType = Location_Type;
         this.incidentZip = Incident_Zip;

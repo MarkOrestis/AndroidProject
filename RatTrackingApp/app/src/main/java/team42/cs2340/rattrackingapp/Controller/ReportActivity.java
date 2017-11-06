@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import team42.cs2340.rattrackingapp.Model.Borough;
 import team42.cs2340.rattrackingapp.Model.LocationType;
 import team42.cs2340.rattrackingapp.Model.Sighting;
+import team42.cs2340.rattrackingapp.Model.SightingList;
 import team42.cs2340.rattrackingapp.R;
 
 /**
@@ -41,21 +42,24 @@ public class ReportActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private Button addRat;
     private EditText createdDateField;
-    //private EditText locationTypeField;
     private Spinner locationTypeSpinner;
     private EditText zipField;
     private EditText addressField;
     private EditText cityField;
-    //private EditText boroughField;
     private Spinner boroughSpinner;
     private EditText latitudeField;
     private EditText longitudeField;
+    SightingList sightingList;
+    ArrayList<Sighting> sightingArrayList;
     private static final String TAG = "ReportActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
+
+        sightingList = SightingList.getInstance();
+        sightingArrayList = sightingList.getsightingList();
 
         cityField = (EditText) findViewById(R.id.city_text);
         createdDateField = (EditText) findViewById(R.id.createDate_text);
@@ -91,6 +95,7 @@ public class ReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addRat();
+                startActivity(new Intent(ReportActivity.this, LaunchActivity.class));
             }
         });
     }
@@ -111,6 +116,8 @@ public class ReportActivity extends AppCompatActivity {
         final Double longitude2 = Double.parseDouble(longitude);
 
         //String password = passwordField.getText().toString().trim();
+        sightingArrayList.add(new Sighting(date, loctype, zip, address, city, borough, latitude,
+                longitude));
 
         sighting.setCity(city);
         mDatabase.addChildEventListener(new ChildEventListener() {

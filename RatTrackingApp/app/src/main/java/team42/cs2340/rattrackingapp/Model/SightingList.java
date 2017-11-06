@@ -65,12 +65,12 @@ public class SightingList {
                         incidentZip = item.child("Incident Zip").getValue().toString();
                         latitude = item.child("Latitude").getValue().toString();
                         longitude = item.child("Longitude").getValue().toString();
-                        uniqueKey = item.child("Unique Key").getValue().toString();
+//                        uniqueKey = item.child("Unique Key").getValue().toString();
                         //Log.d(TAG, "HA:" + date);
 //                        String Unique_Key,String Date, String Location_Type,String Incident_Zip,String Incident_Address,
 //                                String City,String Borough,String Latitude,String Longitude
 
-                        Sighting entry = new Sighting(uniqueKey, createdDate ,locationType, incidentZip,
+                        Sighting entry = new Sighting(createdDate ,locationType, incidentZip,
                                 incidentAddress, city, borough, latitude, longitude);
                         sightingList.add(entry);
 
