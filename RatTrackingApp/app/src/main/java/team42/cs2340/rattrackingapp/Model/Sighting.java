@@ -37,14 +37,14 @@ public class Sighting {
 
     /**
      * constructor with string inputs
-     * @param Date
-     * @param Location_Type
-     * @param Incident_Zip
-     * @param Incident_Address
-     * @param City
-     * @param Borough
-     * @param Latitude
-     * @param Longitude
+     * @param Date The date the rat was created
+     * @param Location_Type the location type where the rat was found
+     * @param Incident_Zip the zip code where the rat was spotted
+     * @param Incident_Address the address where the rat was found
+     * @param City The city where the rat was spotted
+     * @param Borough the borough of the type of rat
+     * @param Latitude the latitude where the rat was found
+     * @param Longitude the longitude where the rat was spotted.
      */
     public Sighting(String Date, String Location_Type,String Incident_Zip,String Incident_Address,
                     String City,String Borough,String Latitude,String Longitude) {
