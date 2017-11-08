@@ -19,7 +19,8 @@ import team42.cs2340.rattrackingapp.Model.SightingList;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/26/2017.
+ * Page that will display after the user login is successful and has all the buttons
+ * that the user will select to view the desired page.
  */
 
 public class LaunchActivity extends AppCompatActivity {
@@ -35,6 +36,10 @@ public class LaunchActivity extends AppCompatActivity {
     private static final String TAG = "LaunchActivity";
 
     @Override
+
+    /**
+     * Creates the launch page with all the necessary buttons
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);

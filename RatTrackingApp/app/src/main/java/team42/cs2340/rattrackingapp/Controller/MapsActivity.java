@@ -41,9 +41,8 @@ import java.util.StringTokenizer;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Beatrice on 10/30/17.
+ * The page that is created to create the google maps.
  */
-
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private Spinner monthSpinner;
@@ -69,7 +68,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Date after;
     Date check;
 
-
+    /**
+     * Creates the page with the google maps and the necessary buttons.
+     * @param savedInstanceState the instance used to create the page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,6 +182,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /**
+     * Method used to create the google map.
+     * @param googleMap the google map parameter that holds the map
+     */
     @Override
     public void onMapReady(final GoogleMap googleMap) {
 
@@ -189,6 +195,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        mMap.addMarker(new MarkerOptions().position(nyc).title("Marker in nyc"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(nyc));
         mDatabase.addChildEventListener(new ChildEventListener() {
+            /**
+             * One of the five methods that runs through when a child is added to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 //                Log.d("TESTING", "HEY" + dataSnapshot.child("Created Date").getValue().toString());
@@ -226,21 +238,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                }
             }
 
+            /**
+             * One of the five methods that runs through when a child is changed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /**
+             * One of the five methods that runs through when a child is removed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             */
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
+            /**
+             * One of the five methods that runs through when a child is moved to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
+            /**
+             * One of the five methods that runs through to see what happens when
+             * database reading is cancelled.
+             * @param databaseError a parameter that holds an error in the database
+             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

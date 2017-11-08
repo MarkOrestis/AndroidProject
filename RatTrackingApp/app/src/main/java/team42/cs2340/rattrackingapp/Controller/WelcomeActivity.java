@@ -30,6 +30,10 @@ public class WelcomeActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "WelcomeActivity";
 
+    /**
+     * Creates the welcome activity page.
+     * @param savedInstanceState the instance used to create the welcome page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,13 +97,18 @@ public class WelcomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * Method used to listen to the database.
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-
+    /**
+     * Method used to stop listening to the database.
+     */
     @Override
     public void onStop() {
         super.onStop();

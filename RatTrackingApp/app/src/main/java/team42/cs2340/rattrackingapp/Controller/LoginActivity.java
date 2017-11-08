@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/25/2017.
+ * Page that displays for the user to login.
  */
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,6 +39,10 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LoginActivity";
 
+    /**
+     * Creates the page that will check for the user to login
+     * @param savedInstanceState the instance used to create the login page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +86,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The method to attempt to launch the screen if user login is
+     * successful.
+     */
     public void attemptLaunchScreen() {
 
         //resets errors
@@ -136,13 +144,18 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method to constantly listen to the database.
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-
+    /**
+     * Method to stop when the user is successfully logged in.
+     */
     @Override
     public void onStop() {
         super.onStop();

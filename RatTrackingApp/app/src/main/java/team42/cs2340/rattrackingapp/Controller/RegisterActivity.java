@@ -18,11 +18,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import team42.cs2340.rattrackingapp.R;
 
-
 /**
- * Created by Orestis Markozanes on 10/26/2017.
+ * The page that is used to have the user register into the database.
  */
-
 public class RegisterActivity extends AppCompatActivity{
 
     private Button bSignup;
@@ -34,6 +32,10 @@ public class RegisterActivity extends AppCompatActivity{
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "RegisterActivity";
 
+    /**
+     * Creates the page for the user to register into the application.
+     * @param savedInstanceState the instance used to create the register page.
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -79,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     * Method used to sign up into the application database
+     */
     public void goToSignUp() {
         String email = emailField.getText().toString().trim();
         String password = passwordField.getText().toString().trim();
@@ -111,13 +116,19 @@ public class RegisterActivity extends AppCompatActivity{
 
                 });
     }
+
+    /**
+     * Method used to start listening to the database.
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-
+    /**
+     * Method used to stop listening to the database.
+     */
     @Override
     public void onStop() {
         super.onStop();

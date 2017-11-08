@@ -11,13 +11,18 @@ import team42.cs2340.rattrackingapp.R;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * Created by Beatrice on 10/30/17.
- */
 
+/**
+ * Page used to pre-filter the data into the desired range.
+ */
 public class SearchDataActivity extends Activity {
     private Button searchByDateButton;
     private Button graphByDateButton;
+
+    /**
+     * Creates the page for the user to select the pre-filter data range.
+     * @param savedInstanceState the instance used to create the search page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

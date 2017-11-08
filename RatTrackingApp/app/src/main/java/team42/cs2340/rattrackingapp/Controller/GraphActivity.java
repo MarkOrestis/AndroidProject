@@ -29,6 +29,10 @@ import team42.cs2340.rattrackingapp.R;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * The page that will display the rat sighting in a
+ * graph format
+ */
 public class GraphActivity extends AppCompatActivity {
 
     private Spinner monthSpinner;
@@ -49,6 +53,11 @@ public class GraphActivity extends AppCompatActivity {
     String endMonth = "9";
     String endYear = "2015";
 
+    /**
+     * Creates a page that will have the option to filter the data
+     * on the graph with the rat sighting data.
+     * @param savedInstanceState the instance that is used to create this page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +171,9 @@ public class GraphActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method that creates the bar graph for the rat sighting
+     */
     public void createRandomBarGraph(){
 
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -226,27 +238,9 @@ public class GraphActivity extends AppCompatActivity {
         barChart.setDescription("My First Bar Graph!");
     }
 
-    public ArrayList<String> getList(Calendar startDate, Calendar endDate){
-        ArrayList<String> list = new ArrayList<String>();
-        while(startDate.compareTo(endDate)<=0){
-            list.add(getDate(startDate));
-            startDate.add(Calendar.DAY_OF_MONTH,1);
-        }
-        return list;
-    }
-
-    public String getDate(Calendar cld){
-        String curDate = cld.get(Calendar.YEAR) + "/" + (cld.get(Calendar.MONTH) + 1) + "/"
-                +cld.get(Calendar.DAY_OF_MONTH);
-        try{
-            Date date = new SimpleDateFormat("yyyy/MM/dd").parse(curDate);
-            curDate =  new SimpleDateFormat("yyy/MM/dd").format(date);
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
-        return curDate;
-    }
-
+    /**
+     * Method that populates the spinner with the correct data.
+     */
     public void populateSpinner() {
         monthSpinner = (Spinner) findViewById(R.id.searchmonth_SpinnerGraph);
         yearSpinner = (Spinner) findViewById(R.id.searchyear_SpinnerGraph);

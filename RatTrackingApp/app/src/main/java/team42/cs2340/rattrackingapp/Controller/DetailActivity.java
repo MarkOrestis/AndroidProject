@@ -18,9 +18,8 @@ import team42.cs2340.rattrackingapp.Model.Sighting;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/27/2017.
+ * A page that displays the specific details of a rat sighting data
  */
-
 public class DetailActivity extends AppCompatActivity {
 
     private Sighting sighting = new Sighting();
@@ -29,6 +28,10 @@ public class DetailActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "DetailActivity";
 
+    /**
+     * Creates a page that has the specific details of a rat sighting.
+     * @param savedInstanceState the instance that will be used for this page.
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,12 @@ public class DetailActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("Sightings").child(sightingKey);
 
         mDatabase.addChildEventListener(new ChildEventListener() {
+            /**
+             * One of the five methods that runs through when a child is added to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String key = dataSnapshot.getKey();
@@ -97,22 +106,43 @@ public class DetailActivity extends AppCompatActivity {
 
 
             }
-
+            /**
+             * One of the five methods that runs through when a child is changed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
 
+            /**
+             * One of the five methods that runs through when a child is removed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             */
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
 
+            /**
+             * One of the five methods that runs through when a child is moved to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
+            /**
+             * One of the five methods that runs through to see what happens when
+             * database reading is cancelled.
+             * @param databaseError a parameter that holds an error in the database
+             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

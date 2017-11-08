@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import team42.cs2340.rattrackingapp.R;
 
 /**
- * Created by Orestis Markozanes on 10/27/2017.
+ * Page that displays all the data in a list view.
  */
 
 public class DataActivity extends AppCompatActivity {
@@ -37,6 +37,10 @@ public class DataActivity extends AppCompatActivity {
     private ArrayList<String> sightings = new ArrayList<>();
     private static final String TAG = "DataActivity";
 
+    /**
+     * Creates the list view page using the activity_data xml file.
+     * @param savedInstanceState the instance that will be used for this page
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +67,13 @@ public class DataActivity extends AppCompatActivity {
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, sightings);
         sightingList.setAdapter(arrayAdapter);
-
         mDatabase.addChildEventListener(new ChildEventListener() {
+            /**
+             * One of the five methods that runs through when a child is added to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -74,22 +83,41 @@ public class DataActivity extends AppCompatActivity {
                 sightings.add(key);
                 arrayAdapter.notifyDataSetChanged();
             }
-
+            /**
+             * One of the five methods that runs through when a child is changed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-
+            /**
+             * One of the five methods that runs through when a child is removed to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             */
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-
+            /**
+             * One of the five methods that runs through when a child is moved to check data inside
+             * the fire base database.
+             * @param dataSnapshot the snapshot of the data currently in the database
+             * @param s a string that will hold some data
+             */
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
+            /**
+             * One of the five methods that runs through to see what happens when
+             * database reading is cancelled.
+             * @param databaseError a parameter that holds an error in the database
+             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
 

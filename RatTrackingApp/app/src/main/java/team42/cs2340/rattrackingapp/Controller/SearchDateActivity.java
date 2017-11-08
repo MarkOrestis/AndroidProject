@@ -18,7 +18,7 @@ import java.util.Calendar;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Beatrice on 10/30/17.
+ * Page that will filter the data.
  */
 
 public class SearchDateActivity extends Activity {
@@ -45,6 +45,11 @@ public class SearchDateActivity extends Activity {
     public Spinner getYearSpinner2() {
         return yearSpinner2;
     }
+
+    /**
+     * Creates the search date page.
+     * @param savedInstanceState instance used to create the search date page.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -157,6 +162,9 @@ public class SearchDateActivity extends Activity {
         yearSpinner2.setAdapter(year_adapter2);
     }
 
+    /**
+     * Method used to go to the date maps page.
+     */
     public void goToDateMaps() {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
