@@ -76,7 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        String adder = "" + startMonth + startYear;
+        String adder;
 //        Log.d("BEATRICE", adder);
 //        startMonth++;
 //        startYear++;
@@ -206,7 +206,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //                Log.d("TESTING", "HEY" + dataSnapshot.child("Created Date").getValue().toString());
                 StringTokenizer butt = new StringTokenizer(dataSnapshot.child("Created Date").getValue().toString(), "/");
                 String first = butt.nextToken();
-                String second = butt.nextToken();
+                String second = butt.nextToken(); // Necessary to grab the correct token
                 String third = butt.nextToken().substring(0,4);
 //                Log.d("TESTING", "HEY" + first + third);
                 String time = first + third;

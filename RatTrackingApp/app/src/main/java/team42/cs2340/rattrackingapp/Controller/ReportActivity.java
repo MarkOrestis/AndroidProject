@@ -147,53 +147,32 @@ public class ReportActivity extends AppCompatActivity {
                 Log.d(TAG, latitude2.getClass().toString());
                 mDatabase.child("Sightings").child(childrenCount).child("Latitude").setValue(latitude2);
                 mDatabase.child("Sightings").child(childrenCount).child("Longitude").setValue(longitude2);
-                String key = dataSnapshot.getKey();
+//                String key = dataSnapshot.getKey();
 
                 //sighting.getCity() = city input
 
                 Log.d(TAG, "Datasnapshot:" + dataSnapshot.getChildrenCount() );
             }
 
-            /**
-             * One of the five methods that runs through when a child is changed to check data inside
-             * the fire base database.
-             * @param dataSnapshot the snapshot of the data currently in the database
-             * @param s a string that will hold some data
-             */
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
             }
-            /**
-             * One of the five methods that runs through when a child is removed to check data inside
-             * the fire base database.
-             * @param dataSnapshot the snapshot of the data currently in the database
-             */
+
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
             }
-            /**
-             * One of the five methods that runs through when a child is moved to check data inside
-             * the fire base database.
-             * @param dataSnapshot the snapshot of the data currently in the database
-             * @param s a string that will hold some data
-             */
+
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
             }
 
-            /**
-             * One of the five methods that runs through to see what happens when
-             * database reading is cancelled.
-             * @param databaseError a parameter that holds an error in the database
-             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
     }
 }

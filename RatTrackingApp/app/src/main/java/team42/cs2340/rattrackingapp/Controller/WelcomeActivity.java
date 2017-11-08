@@ -40,8 +40,8 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         //reading csv
-        InputStream inputStream = getResources().openRawResource(R.raw.tinyratsighting);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+//        InputStream inputStream = getResources().openRawResource(R.raw.tinyratsighting);
+//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
 
         mAuth = FirebaseAuth.getInstance();

@@ -56,7 +56,7 @@ public class SightingList {
                         count++;
                         DataSnapshot item = items.next();
                         String borough, city, createdDate, incidentAddress, incidentZip, latitude,
-                                locationType, longitude, uniqueKey;
+                                locationType, longitude, uniqueKey; //Necessary to read in correctly
                         borough = item.child("Borough").getValue().toString();
                         city = item.child("City").getValue().toString();
                         locationType = item.child("Location Type").getValue().toString();
@@ -79,7 +79,7 @@ public class SightingList {
                     sample = new ArrayList<Sighting>();
                     for (int i = 0; i < sightingList.size(); i++) {
                         sample.add(sightingList.get(i));
-                        String date = sample.get(i).getDate();
+//                        String date = sample.get(i).getDate();
                         //Log.d(TAG, "please" + date);
                     }
                 }

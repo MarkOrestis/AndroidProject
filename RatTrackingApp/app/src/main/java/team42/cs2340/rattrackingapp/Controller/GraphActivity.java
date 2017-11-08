@@ -42,7 +42,6 @@ public class GraphActivity extends AppCompatActivity {
 
     HashMap<Integer, Integer> elDataMap;
     BarChart barChart;
-    ArrayList<String> dates;
     Random random;
     ArrayList<BarEntry> barEntries;
     SightingList sightingList;
@@ -195,15 +194,13 @@ public class GraphActivity extends AppCompatActivity {
 //            dates = getList(mDate1,mDate2);
 
             barEntries = new ArrayList<>();
-            float max = 0f;
-            float value = 0f;
             random = new Random();
 
             for (Sighting sighting : sightingArrayList) {
 //                Log.d("JTest", sighting.getDate().toString());
                 StringTokenizer tokens = new StringTokenizer(sighting.getDate().toString(), "/");
                 String first = tokens.nextToken();
-                String second = tokens.nextToken();
+                String second = tokens.nextToken(); // Necessary to grab the correct token
                 String third = tokens.nextToken().substring(0,4);
                 Log.d("JTest", first + third);
                 Integer key = (first + third).hashCode();

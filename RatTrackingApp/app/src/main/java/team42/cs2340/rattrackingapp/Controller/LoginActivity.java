@@ -26,9 +26,6 @@ import team42.cs2340.rattrackingapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String[] DUMMY_CREDENTIALS = new String[] {
-            "user"
-    };
 
     private Button bLogin;
     private Button bBack;
