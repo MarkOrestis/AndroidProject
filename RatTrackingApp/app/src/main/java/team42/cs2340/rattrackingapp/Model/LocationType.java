@@ -2,7 +2,7 @@ package team42.cs2340.rattrackingapp.Model;
 
 
 /**
- * Created by callydecherd on 10/20/17.
+ * An enum class for location type that contains the different location types in it
  */
 
 public enum LocationType{

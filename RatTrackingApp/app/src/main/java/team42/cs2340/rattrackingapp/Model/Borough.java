@@ -2,7 +2,7 @@ package team42.cs2340.rattrackingapp.Model;
 
 
 /**
- * Created by callydecherd on 10/20/17.
+ * Enum class for Borough containing the different types of borough!
  */
 
 public enum Borough {

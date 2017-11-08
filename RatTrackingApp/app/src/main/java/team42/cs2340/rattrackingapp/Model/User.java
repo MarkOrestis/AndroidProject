@@ -1,7 +1,7 @@
 package team42.cs2340.rattrackingapp.Model;
 
 /**
- * Created by Orestis on 10/9/2017.
+ * A User class thata contains the email, password, and isAdmin.
  */
 
 public class User {

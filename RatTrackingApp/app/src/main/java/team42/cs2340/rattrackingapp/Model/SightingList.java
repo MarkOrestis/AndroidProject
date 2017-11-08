@@ -15,10 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Singleton class to be used by the different search activities and the list view.
- * Contains all the sightingArrayList stored in the database.
- *
- * Created by Orestis on 11/5/2017.
+ * SightingList class that gets all the instances of rat sightings form the database.
  */
 
 public class SightingList {
@@ -29,6 +26,9 @@ public class SightingList {
     private ArrayList<Sighting> sample;
     private static SightingList instance;
 
+    /**
+     * A getInstance method to the all the instances of SightingList.
+     */
     public static SightingList getInstance() {
         if (instance == null) {
             instance = new SightingList();
@@ -94,6 +94,7 @@ public class SightingList {
     }
 
     /**
+     * GetSightingList that returns the rats in the list.
      * @return the arrayList of sightingArrayList
      */
     public ArrayList<Sighting> getsightingList() {
@@ -101,26 +102,21 @@ public class SightingList {
     }
 
     /**
-     *
+     * A getSightingListSize the gets the size of the list
      * @return returns the size of the arrayList
      */
     public int getsightingListSize() {
         return sightingList.size();
     }
 
-    /**
-     *
-     * @return the sample arrayList
-     */
 
-
-    /**
-     * method for searching sightingArrayList by date given a starting date and ending date
-     *
-     * @param start the starting date for the query
-     * @param end the ending date for the query
-     * @return an ArrayList of Sightings that were reported between Date @start and Date @end
-     */
+//    /**
+//     * method for searching sightingArrayList by date given a starting date and ending date
+//     *
+//     * @param start the starting date for the query
+//     * @param end the ending date for the query
+//     * @return an ArrayList of Sightings that were reported between Date @start and Date @end
+//     */
 //    public ArrayList<Sighting> sortByDate(Date start, Date end) throws IllegalArgumentException {
 //        if (start.compareTo(end) > 0) {
 //            throw new IllegalArgumentException("Start date cannot exceed end date.");

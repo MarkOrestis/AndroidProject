@@ -3,7 +3,8 @@ package team42.cs2340.rattrackingapp.Model;
 import java.sql.Timestamp;
 
 /**
- * Created by Orestis on 10/9/2017.
+ * A Sighting class that has all the required field of a rat like unique key, date,
+ * locationType, incidentZip, incident address, city, borough, latitude, longitude.
  */
 
 public class Sighting {
@@ -17,6 +18,9 @@ public class Sighting {
     private String latitude;
     private String longitude;
 
+    /**
+     * A no-arg constructor for the Sighting class
+     */
     public Sighting() {
         this.uniqueKey = "-1";
         this.date = "NA";
@@ -54,6 +58,13 @@ public class Sighting {
         this.longitude = Longitude;
     }
 
+    /**
+     * A constructor with some input fields.
+     * @param uniquekey The unique key of the rat
+     * @param date the date it was created
+     * @param latitude the lattitude where the rat was spotted
+     * @param longitude the longitude where the rat was spotted
+     */
     public Sighting(String uniquekey, String date, String latitude, String longitude) {
         this();
         this.uniqueKey = uniquekey;
@@ -61,6 +72,12 @@ public class Sighting {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    /**
+     * A constructor with some input field
+     * @param uniqueKey the unique key of the rat
+     * @param date the date the rat was created
+     */
     public Sighting(String uniqueKey, String date) {
         this();
         this.uniqueKey = uniqueKey;

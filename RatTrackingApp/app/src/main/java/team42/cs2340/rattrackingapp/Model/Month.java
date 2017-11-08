@@ -1,7 +1,8 @@
 package team42.cs2340.rattrackingapp.Model;
 
 /**
- * Created by Beatrice on 10/30/17.
+ * Enum class of Month that helps to have a relation between the number of the month with the name
+ * of the month.
  */
 
 public enum Month {
@@ -19,15 +20,16 @@ public enum Month {
     DECEMBER ("December", 12);
 
 
-    /** the full string representation of the borough name */
+    /** The final String representation of the month. */
     private final String month;
+    /** The final int representation of the number for the month. */
     private final int number;
 
 
     /**
      * Constructor for the enumeration
      *
-     * @param month   full name of the course
+     * @param month full name of the course
      */
     Month(String month, int number) {
         this.month = month;
@@ -36,10 +38,14 @@ public enum Month {
 
 
     /**
-     *
+     * The toString method to return the private variable month.
      * @return the display string representation of the course
      */
     public String toString() { return month; }
 
+    /**
+     * The public method to get the private variable month number.
+     * @return the interger representation of the month
+     */
     public int getMonth() { return number; }
 }
