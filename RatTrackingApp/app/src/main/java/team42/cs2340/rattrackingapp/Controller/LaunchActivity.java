@@ -35,11 +35,11 @@ public class LaunchActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "LaunchActivity";
 
-    @Override
-
     /**
-     * Creates the launch page with all the necessary buttons
+     * Creates the page when launched
+     * @param savedInstanceState the instance used to create the launch page
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
