@@ -45,7 +45,7 @@ public enum Month {
 
     /**
      * The public method to get the private variable month number.
-     * @return the interger representation of the month
+     * @return the integer representation of the month
      */
     public int getMonth() { return number; }
 }
